@@ -115,10 +115,84 @@
       </div>
     </section>
 
-    <section class="positioning">
-      <div class="positioning-label">Engineering position</div>
-      <blockquote>Acceleration needs discipline.<br><span>Intent → constraints → generation → evidence.</span></blockquote>
-      <p>AI accelerates the work. Engineering controls the outcome.</p>
+    <section class="architecture section" id="architecture" aria-labelledby="architecture-title">
+      <div class="architecture-heading">
+        <p class="eyebrow"><span></span> Framework architecture</p>
+        <h2 id="architecture-title">From business rules to a governed server–client application.</h2>
+        <p>The business model remains the source of truth. <code>cwe-gen</code> turns it into repeatable infrastructure and one typed operations boundary, while engineers keep ownership of business behavior and custom UI.</p>
+      </div>
+
+      <figure class="framework-map" aria-label="CodingWithEase architecture from authored business rules through cwe-gen to server infrastructure and browser UI">
+        <div class="intent-zone">
+          <div class="map-zone-heading">
+            <span>01</span>
+            <div><strong>Authored business truth</strong><small>Engineer and coding agent work inside explicit conventions</small></div>
+          </div>
+          <div class="intent-items">
+            <span class="intent-primary">Business rules</span>
+            <span>Entities</span>
+            <span>Commands</span>
+            <span>Queries</span>
+            <span>Custom DTOs</span>
+          </div>
+        </div>
+
+        <div class="map-arrow" aria-hidden="true"><span>Roslyn source model</span><b>↓</b></div>
+
+        <div class="generator-zone">
+          <div class="map-zone-heading">
+            <span>02</span>
+            <div><strong><code>cwe-gen</code> generation engine</strong><small>Roslyn <code>SyntaxTree</code> identifies types, members, and declared intent</small></div>
+          </div>
+          <div class="generator-actions">
+            <span>Analyze source shapes</span>
+            <span>Validate conventions</span>
+            <span>Generate deterministic C#</span>
+            <span>Verify convergence</span>
+          </div>
+        </div>
+
+        <div class="map-arrow" aria-hidden="true"><span>Generated application contract</span><b>↓</b></div>
+
+        <div class="runtime-zone">
+          <article class="runtime-lane server-lane">
+            <div class="lane-heading"><span>03A</span><div><small>Generated rails</small><h3>Server implementation</h3></div></div>
+            <ul>
+              <li>Slim endpoints and CQ handlers</li>
+              <li>Repositories and provider-neutral data access</li>
+              <li>Permission catalog and server enforcement</li>
+              <li>Validation, audit, documents, and errors</li>
+              <li>AI tool surface and integrations</li>
+            </ul>
+            <p class="lane-rule">The server is the security boundary.</p>
+          </article>
+
+          <div class="operations-bridge">
+            <span class="bridge-label">Shared business boundary</span>
+            <code>I{Entity}Operations</code>
+            <p>Typed DTOs<br>Explicit methods<br>Permission-aware results</p>
+            <div class="bridge-protocol"><span>Server</span><b>⇄</b><span>Client</span><small>HTTPS · typed contracts</small></div>
+          </div>
+
+          <article class="runtime-lane client-lane">
+            <div class="lane-heading"><span>03B</span><div><small>Generated consumption</small><h3>Browser client</h3></div></div>
+            <ul>
+              <li>Typed HTTP operations implementation</li>
+              <li>Generated PageModels and UI binding</li>
+              <li>Reusable grids, forms, and components</li>
+              <li>Permission-aware navigation and actions</li>
+              <li>PWA shell and AI-assisted workflows</li>
+            </ul>
+            <p class="lane-rule">The UI maps to operations—not infrastructure.</p>
+          </article>
+        </div>
+
+        <figcaption>
+          <div><strong>Inspect</strong><span>Generated C# is readable, diffable, and debuggable.</span></div>
+          <div><strong>Enforce</strong><span>Analyzers, permissions, and composition rules guard boundaries.</span></div>
+          <div><strong>Prove</strong><span>Tests, regeneration checks, builds, and release smoke provide evidence.</span></div>
+        </figcaption>
+      </figure>
     </section>
 
     <section class="audience section" aria-labelledby="audience-title">
