@@ -359,10 +359,35 @@ body { background: var(--paper); }
 .security-intro,
 .lineage-heading,
 .services-heading {
-  grid-template-columns: minmax(160px, .55fr) minmax(380px, 1.25fr) minmax(240px, .75fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+  row-gap: 1.4rem;
+  align-items: end;
   max-width: 1500px;
   margin-inline: auto;
   width: 100%;
+}
+.section-heading > .eyebrow,
+.security-intro > .eyebrow,
+.lineage-heading > .eyebrow,
+.services-heading > .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: .15rem;
+}
+.section-heading > h2,
+.security-intro > h2,
+.lineage-heading > h2,
+.services-heading > h2 {
+  grid-column: 1;
+  max-width: 920px;
+}
+.section-heading > p:last-child,
+.security-intro > p:last-child,
+.lineage-heading > p:last-child,
+.services-heading > p:last-child {
+  grid-column: 2;
+  justify-self: end;
+  max-width: 440px;
 }
 .section-heading h2,
 .security h2,
@@ -397,14 +422,23 @@ body { background: var(--paper); }
 
 .positioning {
   display: grid;
-  grid-template-columns: minmax(150px, .35fr) minmax(480px, 1.35fr) minmax(230px, .55fr);
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+  row-gap: 1.4rem;
   align-content: center;
   color: white;
   background: var(--blue);
 }
+.positioning-label { grid-column: 1 / -1; }
 .positioning blockquote { max-width: 980px; }
 .positioning blockquote span { color: var(--signal-light); }
-.positioning > p { color: #d8e3eb; }
+.positioning > p { justify-self: end; max-width: 440px; color: #d8e3eb; }
+
+.ai-title {
+  grid-template-columns: 1fr;
+  gap: 1.4rem;
+}
+.ai-title h2 { max-width: 1100px; }
 
 .audience { background: var(--surface); }
 .audience-header,
@@ -533,6 +567,25 @@ footer { background: var(--ink); }
   .lineage-heading,
   .services-heading,
   .positioning { grid-template-columns: 1fr; }
+  .section-heading > h2,
+  .security-intro > h2,
+  .lineage-heading > h2,
+  .services-heading > h2,
+  .section-heading > p:last-child,
+  .security-intro > p:last-child,
+  .lineage-heading > p:last-child,
+  .services-heading > p:last-child,
+  .positioning-label,
+  .positioning blockquote,
+  .positioning > p {
+    grid-column: 1;
+    justify-self: start;
+  }
+  .section-heading > p:last-child,
+  .security-intro > p:last-child,
+  .lineage-heading > p:last-child,
+  .services-heading > p:last-child,
+  .positioning > p { max-width: 680px; }
   .timeline { grid-template-columns: 1fr 1fr; }
   .services-body { grid-template-columns: 1fr; }
   .services-profile h3 { margin-top: 3.5rem; }
