@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence & Responsibilities | CodingWithEase Engineering</title>
+  <meta name="description" content="Measured CodingWithEase guardrails, verification examples, and the explicit boundary between framework infrastructure and developer responsibility.">
+  <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
+</head>
+<body class="engineering-body">
+  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html">Localization</a><a class="active" href="evidence.html" aria-current="page">Evidence &amp; responsibilities</a></div></nav>
+
+  <main>
+    <section class="tech-hero"><div class="tech-shell tech-hero-grid">
+      <div><p class="tech-kicker">Engineering reference · 05</p><h1>The framework owns the rails.<br>The developer owns the <em>result.</em></h1><p class="tech-lead">CodingWithEase standardizes infrastructure, generates security boundaries, and detects known unsafe shapes. It does not invent correct business rules, prove that a custom query is fast, or remove the need for engineering review. Enterprise quality comes from making that responsibility explicit and verifiable.</p><div class="tech-meta"><span>Measured guardrails</span><span>Explicit ownership</span><span>App-specific proof</span></div></div>
+      <div class="code-window" aria-label="Application ownership zones"><div class="code-window-bar"><span>Application ownership map</span><strong>Different rules by folder</strong></div><pre><code><span class="type">Entities/ Commands/ Queries/</span>
+<span class="type">Services/ Security/ Components/</span>
+  <span class="comment">Engineer + agent author business intent</span>
+
+<span class="attr">Framework/</span>
+  <span class="comment">cwe-gen only · never hand-edit</span>
+
+<span class="attr">Platform/</span>
+  <span class="comment">Framework-managed · documented extension points only</span>
+
+<span class="type">Tests/</span>
+  <span class="comment">Engineer proves the application behavior</span></code></pre><div class="code-window-bar"><span>Rule</span><strong>Generated boundaries are not an agent playground</strong></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">00 · RESPONSIBILITY CONTRACT</span><h2>Automation removes repetition—not accountability.</h2></div><p>The framework can make safe mechanics the default and unsafe shortcuts visible. Only the application team knows whether the business decision, data scope, response time, and operational outcome are correct.</p></div>
+      <table class="attack-table"><thead><tr><th>Concern</th><th>Framework responsibility</th><th>Developer responsibility</th><th>Required evidence</th></tr></thead><tbody>
+        <tr><td>Business rules</td><td>Provides entities, commands, validation hooks, transactions, audit, and test structure.</td><td>Defines invariants, state transitions, approvals, ownership, exceptional paths, and domain tests.</td><td>Scenario tests agreed with process owners.</td></tr>
+        <tr><td>Authorization</td><td>Generates keys, catalogs, authenticated endpoints, handler checks, permission-aware operations, and fail-closed client gates.</td><td>Chooses public capabilities, role grants, row scopes, ownership rules, and tests ordinary users.</td><td>Catalog dump, grant tests, scoped-query tests, and denied hostile requests.</td></tr>
+        <tr><td>Query correctness</td><td>Supplies typed query options, projection allow-lists, safe filtering, deterministic paging, and diagnostics.</td><td>Writes the actual predicate, joins, projection, ordering semantics, and complete data scope.</td><td>Known datasets, edge cases, and result assertions.</td></tr>
+        <tr><td>Query performance</td><td>Warns about unbounded collections, supports paging and caching, and exposes unsafe cache declarations.</td><td>Measures query plans and payloads, selects indexes, avoids N+1 work, chooses paging, and validates production-scale data.</td><td>Plans, timings, row counts, payload size, and load tests.</td></tr>
+        <tr><td>Caching</td><td>Partitions by caller and permission set, invalidates declared tags, and safely disables undeclared custom-query caching.</td><td>Declares every data dependency or opts out when time, external systems, or opaque services affect the result.</td><td>Freshness tests before and after relevant writes and permission changes.</td></tr>
+        <tr><td>Custom code and dependencies</td><td>Protects framework-owned paths and detects several boundary violations.</td><td>Reviews custom integrations, secrets, package risk, error handling, deployment, and operational monitoring.</td><td>Threat review, dependency scanning, configuration review, and release smoke.</td></tr>
+      </tbody></table>
+      <div class="truth-callout"><strong>Honest boundary</strong><p>A framework cannot guarantee that an application has zero vulnerabilities. CodingWithEase reduces vulnerability classes by centralizing and protecting security infrastructure; the application still requires correct policy decisions, custom-code review, dependency maintenance, configuration, and adversarial testing.</p></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">01 · SECURITY BY CONSTRUCTION</span><h2>Agents declare capability. They do not rewrite the checkpoints.</h2></div><p>The high-risk mechanics live in generated or framework-managed zones. The agent works through entities, commands, queries, permissions, scopes, and components; regeneration recreates the same enforcement chain from that declared intent.</p></div>
+      <div class="security-chain"><article><span>01</span><h3>Declare surface</h3><p>The entity CRUD mask and custom methods state which capabilities may exist.</p></article><article><span>02</span><h3>Generate contract</h3><p>Keys, DTOs, operations, endpoints, handlers, and AI descriptors are emitted together.</p></article><article class="enforced"><span>03</span><h3>Protect rails</h3><p><code>Framework/</code> is generator-owned. Infrastructure changes belong in the framework, not an app-agent patch.</p></article><article><span>04</span><h3>Enforce server</h3><p>Every protected handler evaluates the current caller independently of browser state.</p></article><article><span>05</span><h3>Probe failure</h3><p>Tests and analyzers deliberately attempt unsafe paths and require the build or request to fail.</p></article></div>
+      <div class="explain-grid spaced-grid"><div class="code-panel"><div class="code-panel-header"><span>Read-only / append-only declaration</span><strong>STRUCTURAL SECURITY</strong></div><pre><code><span class="comment">// Read-only: no Create, Update, or Delete artifacts exist.</span>
+<span class="attr">[CxEntity(Crud = CxCrud.View)]</span>
+<span class="kw">public partial class</span> <span class="type">ReleasedSpecification</span> { ... }
+
+<span class="comment">// Append-only: Update and Delete are absent everywhere.</span>
+<span class="attr">[CxEntity(Crud = CxCrud.View | CxCrud.Create)]</span>
+<span class="kw">public partial class</span> <span class="type">AuditObservation</span> { ... }</code></pre></div><div class="explain-copy"><h3>Absence is stronger than a hidden button</h3><p>A verb outside the declared mask generates no command, endpoint, operations method, permission key, catalog entry, or AI tool. A read-only contract cannot bind to an editable grid: the mistake becomes a compile error.</p><ul><li>One declaration controls the entire generated surface.</li><li>The browser cannot call an endpoint that was never emitted.</li><li>The runtime assistant cannot discover a tool that does not exist.</li><li>Regeneration removes orphaned artifacts after model changes.</li></ul></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">02 · MEASURED FAILURE CASES</span><h2>Guardrails exist because plausible code failed in real applications.</h2></div><p>These examples are recorded in the current framework documentation and release probes. They show both the benefit of automation and the point where human judgment remains necessary.</p></div>
+      <div class="determinism-grid"><article><span>CWE0111 · performance</span><h3>3,378 rows for a 25-row grid</h3><p>A real query transferred 740 KB; only 0.7% of the payload was useful on first paint. The analyzer now warns on bare collection queries, but the developer must choose paging or justify a domain bound.</p></article><article><span>CWE0124 · cache correctness</span><h3>4 of 12 queries had incomplete tags</h3><p>Those queries read an entity not represented by their cache tags. Custom queries now default to no cache until the author declares dependencies or explicitly chooses zero duration.</p></article><article><span>CWE0205 · security</span><h3>A successful write skipped every rail</h3><p>Synchronous <code>SaveChanges()</code> bypassed validation, authorization, audit, cache reset, files, and events. It is now a build error, and release verification mutates a real call to prove the diagnostic fires.</p></article><article><span>CRUD mask · invariant</span><h3>Generated CRUD once exceeded the domain</h3><p>An immutable document version received Update and Delete. CRUD masks now remove forbidden verbs across server, client, permission, and AI surfaces in lockstep.</p></article><article><span>Permission chain · intent</span><h3>Green builds are not enough</h3><p>The effective permission catalog can be dumped after generation so the constant, grant, and handler key can be compared. Ordinary-persona tests prove denial where Administrator would hide a defect.</p></article><article><span>Security harness · application</span><h3>Rules run against a real data context</h3><p>The starter includes role composition, permission gate, scope policy, and scoped-query tests using the real permission-set implementation over in-memory SQLite.</p></article></div>
+      <div class="truth-callout"><strong>Evidence level</strong><p>These are framework-level findings and safeguards, grounded in revision <code>d9f47f85</code>. They do not automatically certify a particular customer application; each app must publish its own build, security, correctness, and performance results.</p></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">03 · QUERY EXAMPLE</span><h2>The analyzer can identify risk. Only the developer can choose the right answer.</h2></div><p>“Return a list” does not reveal whether the domain contains five rows or five million. Silently clamping would turn a performance defect into missing data, so CodingWithEase asks the author to state the intended shape.</p></div>
+      <div class="explain-grid"><div class="code-panel"><div class="code-panel-header"><span>Unbounded collection</span><strong>CWE0111 WARNING</strong></div><pre><code><span class="attr">[CxQuery]</span>
+<span class="kw">public static</span> Task&lt;List&lt;ShiftRow&gt;&gt; GetProgramShifts(
+    ApplicationDbContext db,
+    Guid workProgramId)
+
+<span class="comment">// How many shifts can this return?</span></code></pre></div><div class="code-panel"><div class="code-panel-header"><span>Growing data set</span><strong>DEVELOPER DECISION: PAGE IT</strong></div><pre><code><span class="attr">[CxQuery]</span>
+<span class="kw">public static</span> Task&lt;CxPagedResult&lt;ShiftRow&gt;&gt;
+    GetProgramShifts(
+        ApplicationDbContext db,
+        Guid workProgramId,
+        CxQueryOptions options)
+
+<span class="comment">// Measure the plan and index for real data.</span></code></pre></div></div>
+      <div class="explain-grid spaced-grid compact"><div class="code-panel"><div class="code-panel-header"><span>Small by business definition</span><strong>DEVELOPER DECISION: STATE THE BOUND</strong></div><pre><code><span class="attr">[CxQuery]</span>
+<span class="attr">[CxBoundedResult(50,
+  <span class="str">"One plant's job titles; bounded by the org chart."</span>)]</span>
+<span class="kw">public static</span> Task&lt;List&lt;JobTitle&gt;&gt;
+    GetJobTitles(ApplicationDbContext db)
+
+<span class="comment">// Runtime guard logs if the claim becomes false.</span></code></pre></div><div class="explain-copy"><h3>Performance remains application engineering</h3><p>The framework provides paging, safe filters, deterministic sorting, cache infrastructure, and warnings. The developer still reviews generated SQL, projections, indexes, cardinality, payload size, N+1 behavior, concurrency, and response time using production-shaped data.</p><ul><li>A warning is a review trigger, not a performance certificate.</li><li>A bounded-result attribute is a domain claim, not a database limit.</li><li>Cache can hide latency while preserving a poor query.</li><li>Performance budgets belong to each application and workflow.</li></ul></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">04 · CACHE EXAMPLE</span><h2>Safe defaults cannot infer opaque business dependencies.</h2></div><p>Caller and permission partitioning prevent cross-user reuse. Write-time tags keep declared data fresh. A query that reads through a service, external API, clock, or another entity still needs an explicit developer decision.</p></div>
+      <div class="explain-grid"><div class="code-panel"><div class="code-panel-header"><span>Database dependencies</span><strong>DECLARE INVALIDATION</strong></div><pre><code><span class="attr">[CxQuery(Tags = <span class="kw">new</span>[] {
+    nameof(Department),
+    nameof(Employee)
+})]</span>
+<span class="kw">public static</span> Task&lt;HeadcountRow&gt;
+    GetHeadcount(ApplicationDbContext db, ...)</code></pre></div><div class="code-panel"><div class="code-panel-header"><span>External or time-sensitive result</span><strong>OPT OUT</strong></div><pre><code><span class="attr">[CxQuery(CacheSeconds = 0)]</span>
+<span class="kw">public static</span> Task&lt;MachineState&gt;
+    GetLiveMachineState(
+        IMachineGateway gateway,
+        CancellationToken ct)
+
+<span class="comment">// A database write cannot invalidate this value.</span></code></pre></div></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">05 · BUSINESS-RULE EXAMPLE</span><h2>The framework secures the command. The developer defines what “allowed” means.</h2></div><p>Generated infrastructure can authenticate, authorize, validate the request shape, open the transaction, stamp audit fields, publish events, and normalize errors. It cannot decide the factory’s approval policy.</p></div>
+      <div class="explain-grid"><div class="explain-copy"><h3>Business meaning stays authored</h3><p>This command’s permission says who may attempt approval. The method body states when approval is valid for the business.</p><ul><li>Correct lifecycle states come from domain experts.</li><li>Separation-of-duties rules are application policy.</li><li>Cut-off times and tolerance limits are business decisions.</li><li>Tests must cover accepted and rejected operational scenarios.</li></ul></div><div class="code-panel"><div class="code-panel-header"><span>ApproveHours.cs · conceptual</span><strong>DEVELOPER-OWNED SEMANTICS</strong></div><pre><code><span class="attr">[CxCommand(Permission = TimePermissions.Approve)]</span>
+<span class="kw">public static async</span> Task&lt;CxResult&gt; ApproveHours(
+    ApplicationDbContext db,
+    ApproveHours request,
+    CancellationToken ct)
+{
+    <span class="kw">var</span> entry = <span class="kw">await</span> db.TimeEntries.FindAsync(...);
+
+    <span class="kw">if</span> (entry.Status != TimeStatus.Submitted)
+        <span class="kw">return</span> CxResult.Failure(<span class="str">"Only submitted time can be approved."</span>);
+
+    <span class="kw">if</span> (entry.EmployeeId == request.ApproverEmployeeId)
+        <span class="kw">return</span> CxResult.Failure(<span class="str">"Self-approval is not allowed."</span>);
+
+    entry.Approve(request.ApproverEmployeeId);
+    <span class="kw">await</span> db.SaveChangesAsync(ct);
+    <span class="kw">return</span> CxResult.Success();
+}</code></pre></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">06 · APPLICATION PROOF</span><h2>Every delivered app must earn its own evidence.</h2></div><p>A framework release can prove its rails. An application release must additionally prove its domain behavior, access model, data scale, integrations, configuration, and operating environment.</p></div>
+      <div class="rail-list"><article><span>01</span><h3>Regenerate and compare</h3><p>Run <code>cwe-gen</code> twice and require a clean generated tree with no orphaned artifacts.</p></article><article><span>02</span><h3>Build and analyze</h3><p>Treat security diagnostics as errors and run <code>CheckComposition</code> in addition to compilation.</p></article><article><span>03</span><h3>Test business scenarios</h3><p>Verify invariants, transitions, exceptional paths, and rejected operations using realistic data.</p></article><article><span>04</span><h3>Test ordinary personas</h3><p>Inspect the effective permission catalog and prove API, page, row-scope, and AI-tool denial outside Administrator.</p></article><article><span>05</span><h3>Measure queries</h3><p>Capture SQL plans, indexes, row counts, payloads, timings, cache behavior, and concurrent load against production-shaped volume.</p></article><article><span>06</span><h3>Release smoke</h3><p>Validate configuration, secrets, health, authentication, critical routes, integrations, logging, and rollback in the target environment.</p></article></div>
+      <div class="truth-callout"><strong>Definition of done</strong><p>“Built with CodingWithEase” describes the delivery system. It is not a substitute for an application-specific acceptance record signed by engineering and the process owner.</p></div>
+    </div></section>
+
+    <section class="page-next"><div class="tech-shell"><div><span>Start with the complete path</span><h2>Follow one business object through generation, security, and UI.</h2></div><a href="engineering.html">Open Entity → GridView</a></div></section>
+  </main>
+  <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Evidence grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+</body>
+</html>

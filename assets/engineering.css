@@ -134,6 +134,8 @@ pre { margin: 0; tab-size: 2; }
 .section-number { display: block; margin-bottom: 1rem; color: var(--docs-orange); font: 800 .65rem var(--mono); letter-spacing: .1em; }
 
 .explain-grid { display: grid; grid-template-columns: minmax(260px, .62fr) minmax(0, 1.38fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.spaced-grid { margin-top: 3rem; }
+.spaced-grid.compact { margin-top: 2rem; }
 .explain-copy h3 { margin: 0 0 1rem; font-size: 1.5rem; letter-spacing: -.035em; }
 .explain-copy p { color: var(--docs-muted); line-height: 1.75; }
 .explain-copy ul { display: grid; gap: .8rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }

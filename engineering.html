@@ -27,6 +27,7 @@
       <a href="ai-agents.html">AI coding agents</a>
       <a href="permissions.html">Permissions</a>
       <a href="localization.html">Localization</a>
+      <a href="evidence.html">Evidence &amp; responsibilities</a>
     </div>
   </nav>
 
@@ -237,13 +238,13 @@ db.Set&lt;Department&gt;().Add(entity);
     DeletePermission=<span class="str">"@DepartmentPermissions.Delete"</span>&gt;
   &lt;Columns&gt;
     &lt;<span class="type">CweGridTextColumn</span> Property=<span class="str">"d =&gt; d.Name"</span> /&gt;
-    &lt;<span class="type">CweGridTextColumn</span> Property=<span class="str">"d =&gt; d.Description"</span> /&gt;
+
     &lt;<span class="type">CweGridBoolColumn</span> TRow=<span class="str">"DepartmentViewModel"</span>
         Property=<span class="str">"d =&gt; d.IsActive"</span> Title=<span class="str">"Status"</span> /&gt;
   &lt;/Columns&gt;
   &lt;FormTemplate Context=<span class="str">"m"</span>&gt;
     &lt;<span class="type">CweTextBox</span> Label=<span class="str">"Name"</span> @bind-Value=<span class="str">"m.Name"</span> Required /&gt;
-    &lt;<span class="type">CweTextArea</span> Label=<span class="str">"Description"</span> @bind-Value=<span class="str">"m.Description"</span> /&gt;
+
     &lt;<span class="type">CweCheckbox</span> Text=<span class="str">"Active"</span> @bind-Value=<span class="str">"m.IsActive"</span> /&gt;
   &lt;/FormTemplate&gt;
 &lt;/<span class="type">CweEntityGrid</span>&gt;</code></pre>

@@ -195,6 +195,7 @@
         </figcaption>
       </figure>
       <a class="engineering-reference-link" href="engineering.html">Explore the engineering reference <span aria-hidden="true">→</span></a>
+      <div class="architecture-responsibility"><span>Developer-owned</span><strong>Business rules and query performance remain application engineering.</strong><p>The framework provides secure rails, analyzers, paging, caching, and diagnostics. The developer defines correct domain behavior and proves query plans, indexes, payloads, and response times against realistic data.</p></div>
     </section>
 
     <section class="audience section" aria-labelledby="audience-title">
@@ -240,6 +241,7 @@
         <p>Move failures left</p>
         <div><span>Silent no-op</span><b>→</b><span>Runtime error</span><b>→</b><span>Compile error</span><b>→</b><span>Generation diagnostic</span><b>→</b><span class="ladder-best">Structurally impossible</span></div>
       </div>
+      <a class="button button-primary proof-evidence-link" href="evidence.html">Read the evidence and responsibility boundary <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="security section" id="security">
@@ -267,6 +269,7 @@
         <article><p class="card-kicker">Operations</p><h3>Schema drift fails loudly</h3><p>A model fingerprint detects a database that no longer matches the application and stops a silent, wrong-schema startup.</p></article>
         <article><p class="card-kicker">Defense in depth</p><h3>Endpoints, handlers, scopes</h3><p>Endpoint authorization, handler checks, save-time authorization, page gates, and page-scoped AI tools reinforce the same permission model.</p></article>
       </div>
+      <div class="security-boundary-note"><div><span>Security boundary</span><strong>Secure by design does not mean invulnerable by definition.</strong></div><p>CodingWithEase keeps generated permission, handler, operations, and save-pipeline infrastructure outside normal agent-authored code. Developers still own permission policy, row scope, business rules, custom code, dependencies, configuration, and adversarial testing.</p><a href="evidence.html">Review responsibilities →</a></div>
     </section>
 
     <section class="ai section section-violet" id="ai">

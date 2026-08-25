@@ -165,6 +165,7 @@ h1 em { color: var(--signal); font-style: normal; }
 .error-ladder div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font: .74rem var(--mono); }
 .error-ladder b { color: #5b6057; }
 .error-ladder .ladder-best { padding: .65rem .8rem; color: var(--ink); background: var(--signal); font-weight: 800; }
+.proof-evidence-link { margin-top: 1.5rem; }
 
 .security-intro { display: grid; grid-template-columns: .6fr 1.2fr .8fr; gap: 3rem; align-items: end; }
 .security-intro .eyebrow { align-self: start; }
@@ -603,6 +604,15 @@ body { background: var(--paper); }
 .engineering-reference-link span { color: var(--signal); font-size: 1.15rem; }
 .engineering-reference-link:hover { color: white; border-color: var(--signal); background: var(--signal); }
 .engineering-reference-link:hover span { color: white; }
+.architecture-responsibility { display: grid; grid-template-columns: auto minmax(240px,.75fr) 1fr; gap: 1rem 2rem; align-items: start; margin-top: 1rem; padding: 1.2rem; color: #d5e1e9; border-left: 4px solid var(--signal); background: #102a43; }
+.architecture-responsibility span, .security-boundary-note span { color: var(--signal-light); font: 800 .62rem var(--mono); text-transform: uppercase; }
+.architecture-responsibility strong { line-height: 1.45; }
+.architecture-responsibility p { margin: 0; color: #aebfca; font-size: .8rem; line-height: 1.65; }
+.security-boundary-note { display: grid; grid-template-columns: minmax(230px,.65fr) 1fr auto; gap: 2rem; align-items: center; width: 100%; max-width: 1500px; margin: 1px auto 0; padding: 1.4rem; color: white; background: var(--ink); }
+.security-boundary-note div { display: grid; gap: .55rem; }
+.security-boundary-note strong { line-height: 1.4; }
+.security-boundary-note p { margin: 0; color: #b9c8d2; font-size: .8rem; line-height: 1.65; }
+.security-boundary-note a { color: white; font-weight: 800; white-space: nowrap; }
 
 .audience { background: var(--surface); }
 .audience-header,
@@ -780,4 +790,7 @@ footer { background: var(--ink); }
   .framework-map figcaption { grid-template-columns: 1fr 1fr; }
   .intent-items .intent-primary,
   .framework-map figcaption div:last-child { grid-column: 1 / -1; }
+  .architecture-responsibility,
+  .security-boundary-note { grid-template-columns: 1fr; }
+  .security-boundary-note a { justify-self: start; }
 }
