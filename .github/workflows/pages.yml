@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Verify static site
         shell: pwsh
         run: ./scripts/verify-site.ps1
@@ -35,7 +35,7 @@ jobs:
     needs: verify
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
