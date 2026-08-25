@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Localization | CodingWithEase Engineering</title>
+  <meta name="description" content="How CodingWithEase discovers localizable text, seeds a new language, loads culture on server and client, and supports reviewed AI translation.">
+  <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
+</head>
+<body class="engineering-body">
+  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a class="active" href="localization.html" aria-current="page">Localization</a></div></nav>
+
+  <main>
+    <section class="tech-hero"><div class="tech-shell tech-hero-grid">
+      <div><p class="tech-kicker">Engineering reference · 04</p><h1>Add a language once.<br>The catalog follows the <em>application.</em></h1><p class="tech-lead">Framework components, generated entity metadata, and authored application text converge into one catalog. A new culture is seeded from English, may be translated in resumable AI batches, and remains reviewable by a human.</p><div class="tech-meta"><span>Discoverable strings</span><span>Placeholder-safe AI</span><span>Human review states</span></div></div>
+      <div class="code-window" aria-label="Add a language workflow"><div class="code-window-bar"><span>LanguagesContent.razor · simplified</span><strong>One administrative action</strong></div><pre><code><span class="kw">var</span> languageId = <span class="kw">await</span> operations
+    .CreateLanguageAsync(<span class="kw">new</span> LanguageEditModel
+    {
+        Code = <span class="str">"de-DE"</span>,
+        Name = <span class="str">"Deutsch"</span>,
+        IsEnabled = <span class="kw">true</span>,
+        SortOrder = 30
+    }, ct);
+
+<span class="kw">await</span> localization.SyncEntriesAsync(languageId, ct);</code></pre><div class="code-window-bar"><span>Seed source</span><strong>English catalog</strong></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">00 · COMPLETE FLOW</span><h2>A language is configuration—not a rewrite.</h2></div><p>The system discovers what can be translated before translators start. Adding a language creates the missing entries; it does not require rebuilding every page.</p></div>
+      <div class="localization-flow"><article><span>01</span><h3>Discover catalog</h3><p>Framework, generated, and application-owned sources contribute localizable keys.</p></article><article><span>02</span><h3>Add culture</h3><p>Store BCP-47 code, display name, enabled/default state, and ordering.</p></article><article><span>03</span><h3>Seed &amp; sync</h3><p>Missing target entries are created from the English source catalog.</p></article><article><span>04</span><h3>Translate &amp; review</h3><p>Edit manually or run resumable AI batches, then approve reviewed output.</p></article></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">01 · THREE SOURCE FAMILIES</span><h2>The catalog knows where UI language originates.</h2></div><p>Localization is not limited to resource files an engineer remembered to create. The framework derives keys from the same sources that define the application.</p></div>
+      <div class="source-families"><article><span>Framework</span><h3>Component language</h3><p>Connected components use their English text as the key for standard unkeyed strings such as paging and dialog labels.</p></article><article><span>Generated</span><h3>Entity and page metadata</h3><p>Display names, validation messages, entity labels, and generated page text receive stable keyed entries.</p></article><article><span>Application</span><h3>Authored literals</h3><p>Localizable component parameters and application UI text are discovered and checked by analyzers.</p></article></div>
+      <div class="truth-callout"><strong>Design rule</strong><p>English remains a readable source and safe fallback. The catalog layers translations over it instead of replacing meaning with opaque identifiers everywhere.</p></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">02 · SERVER + CLIENT</span><h2>One culture crosses both rendering hosts.</h2></div><p>The server localizer resolves catalog entries during server rendering. At client startup, the active culture is loaded from the authenticated application endpoint so WebAssembly continues with the same language.</p></div>
+      <div class="explain-grid"><div class="explain-copy"><h3>Composite formats stay structured</h3><p>Parameterized messages keep placeholders intact while translating the surrounding sentence. The runtime applies values only after selecting the localized format.</p><ul><li>Server and browser share catalog meaning.</li><li>Missing translations safely display English.</li><li>Culture selection is application state, not duplicated page logic.</li><li>Catalog reconciliation adds newly discovered keys without erasing reviewed work.</li></ul></div><div class="code-panel"><div class="code-panel-header"><span>Localized application text · conceptual example</span><strong>PLACEHOLDER SAFE</strong></div><pre><code><span class="kw">var</span> format = localizer[
+    <span class="str">"Department {0} has {1} employees."</span>];
+
+<span class="kw">var</span> message = <span class="kw">string</span>.Format(
+    CultureInfo.CurrentCulture,
+    format,
+    department.Name,
+    employeeCount);
+
+<span class="comment">// Client startup obtains the active culture from:</span>
+<span class="str">"api/localization/current"</span></code></pre></div></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">03 · REVIEWABLE STATES</span><h2>Automation never hides translation provenance.</h2></div><p>Each entry has an operational state. Teams can distinguish a fallback from machine output and distinguish machine output from reviewed business language.</p></div>
+      <div class="state-grid"><article><span>State 01</span><h3>Untranslated</h3><p>The English source remains visible. Nothing becomes blank because a target value is missing.</p></article><article><span>State 02</span><h3>Machine translated</h3><p>AI output is stored as awaiting review, not silently presented as approved terminology.</p></article><article><span>State 03</span><h3>Customized / reviewed</h3><p>A person has approved or refined the phrase for the business and locale.</p></article></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">04 · AI TRANSLATION</span><h2>Large catalogs translate in safe, resumable batches.</h2></div><p><code>ICxAITranslator</code> accelerates the mechanical first pass while retaining the safeguards needed for business software.</p></div>
+      <div class="benefit-grid"><article><span>Batching</span><h3>Resume instead of restart</h3><p>Translation runs in bounded batches and continues from remaining entries.</p></article><article><span>Formats</span><h3>Preserve placeholders</h3><p>Tokens such as <code>{0}</code> must survive; suspicious output stays in English for correction.</p></article><article><span>Review</span><h3>Approve deliberately</h3><p>Machine status remains visible until a person accepts the result.</p></article><article><span>Safety</span><h3>No blank failure mode</h3><p>Rejected or unavailable AI output does not destroy the readable source.</p></article><article><span>Operations</span><h3>Track remaining work</h3><p>Administrators see translated, pending, and reviewed counts.</p></article><article><span>Terminology</span><h3>Business language wins</h3><p>Human edits preserve factory-specific meaning when a generic translation is insufficient.</p></article></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">05 · LOCALIZATION ANALYZERS</span><h2>New features cannot quietly bypass the catalog.</h2></div><p>Localization diagnostics turn common omissions into actionable engineering feedback while the author still has the code open.</p></div>
+      <table class="diagnostic-table"><thead><tr><th>Rule</th><th>What it finds</th><th>Required correction</th></tr></thead><tbody>
+        <tr><td>CWE0209</td><td>Unlocalized user-facing text.</td><td>Route the string through the supported localization surface.</td></tr><tr><td>CWE0210</td><td>Interpolated runtime text used where a localizable composite format is required.</td><td>Localize the format and preserve structured placeholders.</td></tr><tr><td>CWE0211</td><td>A localizable parameter or usage with an incomplete localization shape.</td><td>Use the framework-supported key/value contract.</td></tr><tr><td>CWE0212</td><td>A localization composition that cannot be discovered or reconciled reliably.</td><td>Move the text into a catalog-visible source.</td></tr>
+      </tbody></table>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">06 · ADDING A LANGUAGE</span><h2>The operational checklist stays short.</h2></div><p>The framework handles catalog breadth; the team remains responsible for culture choice, terminology quality, and release approval.</p></div>
+      <div class="rail-list"><article><span>01</span><h3>Create the language</h3><p>Enter a valid BCP-47 code, name, enabled/default state, and sort order.</p></article><article><span>02</span><h3>Synchronize entries</h3><p>Seed all discovered source strings from the English catalog.</p></article><article><span>03</span><h3>Translate</h3><p>Work manually or run the resumable AI batch assistant.</p></article><article><span>04</span><h3>Review terminology</h3><p>Confirm placeholders, domain language, tone, and factory-specific vocabulary.</p></article><article><span>05</span><h3>Enable and verify</h3><p>Test server and client rendering in the target culture before release.</p></article></div>
+    </div></section>
+
+    <section class="page-next"><div class="tech-shell"><div><span>Continue the engineering reference</span><h2>Return to the complete entity-to-GridView walkthrough.</h2></div><a href="engineering.html">Open the code path →</a></div></section>
+  </main>
+  <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+</body>
+</html>

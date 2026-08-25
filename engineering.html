@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entity to GridView | CodingWithEase Engineering</title>
+  <meta name="description" content="A source-grounded CodingWithEase walkthrough from one C# entity through cwe-gen, generated server infrastructure, permissions, typed operations, and a Blazor GridView.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/engineering.css">
+</head>
+<body class="engineering-body">
+  <header class="site-header docs-header">
+    <a class="brand" href="index.html" aria-label="CodingWithEase home">
+      <span class="brand-mark">C</span>
+      <span class="brand-name">CodingWithEase</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a class="docs-home" href="index.html">Overview</a>
+      <a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a>
+    </nav>
+  </header>
+
+  <nav class="engineering-tabs" aria-label="Engineering reference">
+    <div class="engineering-tabs-inner">
+      <a class="active" href="engineering.html" aria-current="page">Entity → GridView</a>
+      <a href="ai-agents.html">AI coding agents</a>
+      <a href="permissions.html">Permissions</a>
+      <a href="localization.html">Localization</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="tech-hero">
+      <div class="tech-shell tech-hero-grid">
+        <div>
+          <p class="tech-kicker">Engineering reference · 01</p>
+          <h1>One entity.<br>One secure <em>GridView.</em></h1>
+          <p class="tech-lead">The application author declares business meaning once. <code>cwe-gen</code> uses Roslyn to emit the repeatable server and client contract, and the UI binds one typed operations interface instead of rebuilding CRUD, transport, and authorization by hand.</p>
+          <div class="tech-meta">
+            <span>Application code stays small</span>
+            <span>Generated C# stays visible</span>
+            <span>Server remains authoritative</span>
+          </div>
+        </div>
+
+        <div class="code-window" aria-label="Department entity code preview">
+          <div class="code-window-bar"><span>Entities/Hr/Department/Department.cs</span><strong>You author this</strong></div>
+          <pre><code><span class="attr">[CxEntity]</span>
+<span class="attr">[CxDisplayTemplate(<span class="str">"{Name}"</span>)]</span>
+<span class="attr">[CxAIEntity(Searchable = true)]</span>
+<span class="kw">public partial class</span> <span class="type">Department</span>
+{
+    <span class="attr">[Required, StringLength(100)]</span>
+    <span class="kw">public string</span> Name { get; <span class="kw">private set</span>; }
+
+    <span class="kw">public bool</span> IsActive { get; <span class="kw">private set</span>; }
+}</code></pre>
+          <div class="code-window-bar"><span><span class="cmd">$</span> dotnet cwe-gen</span><strong>Roslyn → deterministic files</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="tech-shell">
+        <div class="article-heading">
+          <div><span class="section-number">00 · THE WHOLE PATH</span><h2>Business intent crosses one governed pipeline.</h2></div>
+          <p>The important split is ownership. Entity and page intent belong to the application. Repeated infrastructure belongs to the generator. Security remains a server decision even when the client reflects it.</p>
+        </div>
+        <div class="generation-flow" aria-label="Entity to GridView generation stages">
+          <article><span>01</span><h3>Declare</h3><p>Entity shape, validation, display metadata, CRUD mask, commands, queries.</p></article>
+          <article><span>02</span><h3>Analyze</h3><p>Roslyn reads types and members; diagnostics reject ambiguous or unsafe declarations.</p></article>
+          <article class="generated"><span>03</span><h3>Generate</h3><p>DTOs, strong ids, handlers, endpoints, permissions, operations, AI descriptors.</p></article>
+          <article><span>04</span><h3>Bind</h3><p>The page injects <code>IDepartmentOperations</code>; the correct host implementation is selected.</p></article>
+          <article><span>05</span><h3>Prove</h3><p>Build, tests, composition analysis, regeneration, and clean-tree convergence.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section surface" id="entity">
+      <div class="tech-shell">
+        <div class="article-heading">
+          <div><span class="section-number">01 · APPLICATION SOURCE</span><h2>Start with the business object—not controllers.</h2></div>
+          <p>Attributes state validation, editing, display, hierarchy, and AI discoverability next to the property they describe. Domain methods keep business transitions explicit.</p>
+        </div>
+        <div class="explain-grid">
+          <div class="explain-copy">
+            <h3>What the engineer owns</h3>
+            <p>This is normal C# under the Server project’s <code>Entities/</code> area. It is the durable source of truth and the only place changed when the business object evolves.</p>
+            <ul>
+              <li>Strongly expressed validation and display intent.</li>
+              <li>Private setters and domain methods protect state transitions.</li>
+              <li>Optional parent relation makes the same model usable in a tree grid.</li>
+              <li><code>CxAIEntity</code> opts the record into permission-gated AI search.</li>
+            </ul>
+          </div>
+          <div class="code-panel">
+            <div class="code-panel-header"><span>Department.cs · abridged from the current starter</span><strong>AUTHORED</strong></div>
+            <pre><code><span class="attr">[CxEntity]</span>
+<span class="attr">[CxDisplayTemplate(<span class="str">"{Name}"</span>)]</span>
+<span class="attr">[CxAIEntity(
+    Summary = <span class="str">"A department in the company."</span>,
+    Searchable = <span class="kw">true</span>,
+    SearchRoute = <span class="str">"/departments"</span>)]</span>
+<span class="kw">public partial class</span> <span class="type">Department</span>
+{
+    <span class="attr">[NonEditable]</span>
+    <span class="kw">public</span> DepartmentId Id { get; <span class="kw">private set</span>; }
+
+    <span class="attr">[Required(ErrorMessage = <span class="str">"Department name is required."</span>)]</span>
+    <span class="attr">[StringLength(100)]</span>
+    <span class="attr">[Display(Name = <span class="str">"Name"</span>, Order = 10)]</span>
+    <span class="kw">public string</span> Name { get; <span class="kw">private set</span>; } = <span class="str">""</span>;
+
+    <span class="attr">[Display(Name = <span class="str">"Parent department"</span>)]</span>
+    <span class="kw">public</span> DepartmentId? ParentId { get; <span class="kw">private set</span>; }
+
+    <span class="attr">[DefaultValue(<span class="kw">true</span>)]</span>
+    <span class="kw">public bool</span> IsActive { get; <span class="kw">private set</span>; } = <span class="kw">true</span>;
+
+    <span class="kw">public void</span> Rename(<span class="kw">string</span> name) =&gt; Name = name;
+    <span class="kw">public void</span> Deactivate() =&gt; IsActive = <span class="kw">false</span>;
+}</code></pre>
+          </div>
+        </div>
+        <div class="truth-callout"><strong>Boundary</strong><p><code>Framework/</code> is generated output. If generated behavior is wrong, change the entity, command, query, or generator—never patch a generated file.</p></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="contract">
+      <div class="tech-shell">
+        <div class="article-heading">
+          <div><span class="section-number">02 · GENERATED BOUNDARY</span><h2>One interface removes the server/browser split.</h2></div>
+          <p>The contract and DTOs live where the browser can reference them. The Server implementation dispatches directly; the browser implementation performs typed HTTP calls. Components depend on neither.</p>
+        </div>
+        <div class="explain-grid">
+          <div class="explain-copy">
+            <h3><code>IDepartmentOperations</code></h3>
+            <p>The interface inherits the uniform CRUD surface used by connected UI components and also exposes entity-specific generated queries.</p>
+            <ul>
+              <li>Server prerender receives <code>DepartmentOperations</code>.</li>
+              <li>WebAssembly receives <code>DepartmentClientOperations</code>.</li>
+              <li>The same Razor component works in both phases.</li>
+              <li>No page performs a fragile self-call with raw <code>HttpClient</code>.</li>
+            </ul>
+          </div>
+          <div class="code-panel">
+            <div class="code-panel-header"><span>Framework/Department/IDepartmentOperations.cs</span><strong>GENERATED</strong></div>
+            <pre><code><span class="kw">public interface</span> <span class="type">IDepartmentOperations</span>
+    : <span class="type">ICxCrudOperations</span>&lt;DepartmentViewModel,
+        DepartmentEditModel, DepartmentId&gt;
+{
+    Task&lt;CxResult&lt;DepartmentId&gt;&gt;
+        CreateDepartmentAsync(DepartmentEditModel model, CancellationToken ct);
+
+    Task&lt;CxPagedResult&lt;DepartmentViewModel&gt;&gt;
+        GetDepartmentListAsync(CxQueryOptions options, CancellationToken ct);
+
+    Task&lt;DepartmentViewModel?&gt;
+        GetDepartmentByIdAsync(DepartmentId id, CancellationToken ct);
+
+    Task&lt;IReadOnlyList&lt;CxAILookupCandidate&gt;&gt;
+        FindDepartmentByNameAsync(string[] nameParts, int maxResults, CancellationToken ct);
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section surface" id="server">
+      <div class="tech-shell">
+        <div class="article-heading">
+          <div><span class="section-number">03 · SERVER RAILS</span><h2>Slim transport. Explicit dispatch. Security in the handler.</h2></div>
+          <p>Endpoints authenticate the route group and delegate. The generated handler independently resolves the current caller’s effective permission set before touching the database.</p>
+        </div>
+        <div class="explain-grid">
+          <div class="code-panel">
+            <div class="code-panel-header"><span>DepartmentEndpoints.g.cs</span><strong>GENERATED TRANSPORT</strong></div>
+            <pre><code><span class="kw">var</span> group = endpoints
+    .MapGroup(CxEntityCatalog.Department.Route)
+    .WithTags(<span class="str">"Department"</span>)
+    .RequireAuthorization();
+
+group.MapPost(<span class="str">"/"</span>, <span class="kw">async</span> (
+    DepartmentEditModel model,
+    IDepartmentOperations operations,
+    CancellationToken ct) =&gt;
+        <span class="kw">await</span> operations.CreateDepartmentAsync(model, ct));</code></pre>
+          </div>
+          <div class="code-panel">
+            <div class="code-panel-header"><span>DepartmentCreateCommand.g.cs</span><strong>GENERATED ENFORCEMENT</strong></div>
+            <pre><code><span class="kw">var</span> permissions =
+    <span class="kw">await</span> permissionService.GetPermissionSetAsync(ct);
+
+<span class="kw">if</span> (!permissions.IsGranted(DepartmentPermissions.Create))
+    <span class="kw">return</span> CxResult&lt;DepartmentId&gt;.Failure(
+        <span class="kw">new</span> CxError(<span class="str">"forbidden"</span>, <span class="str">"Not authorized."</span>));
+
+<span class="kw">var</span> entity = Department.Create(request.DepartmentEditModel);
+db.Set&lt;Department&gt;().Add(entity);
+<span class="kw">await</span> db.SaveChangesAsync(ct);</code></pre>
+          </div>
+        </div>
+        <div class="truth-callout"><strong>Security</strong><p>Hiding the New button is user experience. This handler check is the security boundary. Calling the endpoint manually or modifying client state cannot bypass it.</p></div>
+      </div>
+    </section>
+
+    <section class="article-section" id="grid">
+      <div class="tech-shell">
+        <div class="article-heading">
+          <div><span class="section-number">04 · CLIENT COMPOSITION</span><h2>The GridView consumes business operations—not infrastructure.</h2></div>
+          <p>The page declares columns, editing fields, and permission keys. Paging, sorting, searching, CRUD dialogs, typed results, and host selection are already owned by the connected component and generated contract.</p>
+        </div>
+        <div class="explain-grid">
+          <div class="explain-copy">
+            <h3>The application-specific UI</h3>
+            <p>This is where engineering judgment belongs: which facts matter, which actions make sense, and how the user edits the business object.</p>
+            <ul>
+              <li>Columns are typed expressions, not field-name strings.</li>
+              <li>The edit form binds the generated <code>DepartmentEditModel</code>.</li>
+              <li>Permission constants gate client actions consistently.</li>
+              <li>The generated operations contract remains the only data dependency.</li>
+            </ul>
+          </div>
+          <div class="code-panel">
+            <div class="code-panel-header"><span>Components/DepartmentsGrid.razor</span><strong>AUTHORED UI</strong></div>
+            <pre><code><span class="attr">@inject</span> IDepartmentOperations Departments
+
+&lt;<span class="type">CweEntityGrid</span>
+    TRow=<span class="str">"DepartmentViewModel"</span>
+    TEdit=<span class="str">"DepartmentEditModel"</span>
+    TId=<span class="str">"DepartmentId"</span>
+    Operations=<span class="str">"Departments"</span>
+    Title=<span class="str">"Departments"</span>
+    CreatePermission=<span class="str">"@DepartmentPermissions.Create"</span>
+    EditPermission=<span class="str">"@DepartmentPermissions.Update"</span>
+    DeletePermission=<span class="str">"@DepartmentPermissions.Delete"</span>&gt;
+  &lt;Columns&gt;
+    &lt;<span class="type">CweGridTextColumn</span> Property=<span class="str">"d =&gt; d.Name"</span> /&gt;
+    &lt;<span class="type">CweGridTextColumn</span> Property=<span class="str">"d =&gt; d.Description"</span> /&gt;
+    &lt;<span class="type">CweGridBoolColumn</span> TRow=<span class="str">"DepartmentViewModel"</span>
+        Property=<span class="str">"d =&gt; d.IsActive"</span> Title=<span class="str">"Status"</span> /&gt;
+  &lt;/Columns&gt;
+  &lt;FormTemplate Context=<span class="str">"m"</span>&gt;
+    &lt;<span class="type">CweTextBox</span> Label=<span class="str">"Name"</span> @bind-Value=<span class="str">"m.Name"</span> Required /&gt;
+    &lt;<span class="type">CweTextArea</span> Label=<span class="str">"Description"</span> @bind-Value=<span class="str">"m.Description"</span> /&gt;
+    &lt;<span class="type">CweCheckbox</span> Text=<span class="str">"Active"</span> @bind-Value=<span class="str">"m.IsActive"</span> /&gt;
+  &lt;/FormTemplate&gt;
+&lt;/<span class="type">CweEntityGrid</span>&gt;</code></pre>
+          </div>
+        </div>
+
+        <div class="evidence-strip">
+          <article><span>Generated</span><h3>Strong contracts</h3><p>Strong ids, view/edit models, endpoints, handlers, client operations, and permission catalogs.</p></article>
+          <article><span>Enforced</span><h3>Permission boundary</h3><p>Authenticated endpoints plus per-handler checks against the server-resolved caller.</p></article>
+          <article><span>Analyzed</span><h3>Composition rules</h3><p>Invalid component parameters, raw self-calls, missing validation, and unreadable grids surface early.</p></article>
+          <article><span>Verified</span><h3>Convergence</h3><p>Regeneration must leave the tracked generated tree unchanged; drift fails CI.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-next">
+      <div class="tech-shell">
+        <div><span>Next engineering page</span><h2>How AI coding agents use capability truth instead of guessing.</h2></div>
+        <a href="ai-agents.html">Open AI coding agents →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="engineering-footer">
+    <div class="tech-shell"><span>CodingWithEase engineering reference · Examples abridged from framework revision d9f47f85</span><a href="index.html">Back to overview</a></div>
+  </footer>
+</body>
+</html>

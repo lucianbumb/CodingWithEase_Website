@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Permissions | CodingWithEase Engineering</title>
+  <meta name="description" content="How CodingWithEase generates permission keys, resolves effective access, gates the client, and enforces every protected operation on the server.">
+  <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
+</head>
+<body class="engineering-body">
+  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a class="active" href="permissions.html" aria-current="page">Permissions</a><a href="localization.html">Localization</a></div></nav>
+
+  <main>
+    <section class="tech-hero"><div class="tech-shell tech-hero-grid">
+      <div><p class="tech-kicker">Engineering reference · 03</p><h1>The browser can suggest.<br>Only the server can <em>grant.</em></h1><p class="tech-lead">The UI uses the current caller’s permissions to remove unavailable actions. The server independently resolves that caller and rechecks the generated key inside the handler. Changing HTML, JavaScript, or a request cannot manufacture authority.</p><div class="tech-meta"><span>Generated catalog</span><span>Current caller only</span><span>Handler enforcement</span></div></div>
+      <div class="code-window" aria-label="Generated permission check"><div class="code-window-bar"><span>DepartmentCreateCommand.g.cs</span><strong>Server boundary</strong></div><pre><code><span class="kw">var</span> permissions = <span class="kw">await</span> permissionService
+    .GetPermissionSetAsync(ct);
+
+<span class="kw">if</span> (!permissions.IsGranted(
+        DepartmentPermissions.Create))
+{
+    <span class="kw">return</span> CxResult&lt;DepartmentId&gt;.Failure(
+        <span class="kw">new</span> CxError(<span class="str">"forbidden"</span>,
+                    <span class="str">"Not authorized."</span>));
+}</code></pre><div class="code-window-bar"><span>Key</span><strong>entities.department.create</strong></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">00 · FIVE LINK CHAIN</span><h2>A permission is only real when every link exists.</h2></div><p>Generated declarations remove naming drift. Catalog and grants make the key manageable. The handler is the load-bearing security link; client gates communicate the same decision to the user.</p></div>
+      <div class="security-chain"><article><span>01</span><h3>Generate key</h3><p><code>{module}.{entity}.{verb}</code> comes from the business surface.</p></article><article><span>02</span><h3>Publish catalog</h3><p>Known permissions are seeded and available to administration.</p></article><article><span>03</span><h3>Grant access</h3><p>Roles, job titles, and user overrides form the effective set.</p></article><article class="enforced"><span>04</span><h3>Enforce handler</h3><p>The server resolves the current authenticated caller and checks immediately before work.</p></article><article><span>05</span><h3>Gate the UI</h3><p>Buttons and pages reflect access without pretending to be the boundary.</p></article></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">01 · GENERATED CATALOG</span><h2>Keys are code, not scattered strings.</h2></div><p>CRUD permissions are emitted alongside the entity contract. Custom commands and queries can add their own keys through the same generation path.</p></div>
+      <div class="explain-grid"><div class="explain-copy"><h3>One vocabulary everywhere</h3><p>Catalog boot, administration, server handlers, AI tool descriptors, pages, and components refer to the same constants.</p><ul><li>Renames and generator defects become visible diffs.</li><li>Typos cannot quietly create a second permission.</li><li>Public operations remain an explicit decision.</li><li>AI-discoverable records inherit View protection.</li></ul></div><div class="code-panel"><div class="code-panel-header"><span>Framework/Department/DepartmentPermissions.g.cs</span><strong>GENERATED</strong></div><pre><code><span class="kw">public static class</span> <span class="type">DepartmentPermissions</span>
+{
+    <span class="kw">public const string</span> View =
+        <span class="str">"entities.department.view"</span>;
+    <span class="kw">public const string</span> Create =
+        <span class="str">"entities.department.create"</span>;
+    <span class="kw">public const string</span> Update =
+        <span class="str">"entities.department.update"</span>;
+    <span class="kw">public const string</span> Delete =
+        <span class="str">"entities.department.delete"</span>;
+}</code></pre></div></div>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">02 · CLIENT EXPERIENCE</span><h2>The client fetches its own effective set.</h2></div><p>The permission endpoint accepts no user identifier. It answers only for the authenticated caller. Until the set is loaded, permission gates fail closed.</p></div>
+      <div class="explain-grid"><div class="code-panel"><div class="code-panel-header"><span>Client permission source · conceptual excerpt</span><strong>CALLER-BOUND</strong></div><pre><code><span class="kw">var</span> keys = <span class="kw">await</span> http.GetFromJsonAsync&lt;<span class="kw">string</span>[]&gt;(
+    <span class="str">"api/security/my-permissions"</span>, ct);
+
+<span class="comment">// No userId can be supplied by the browser.</span>
+permissionCache.ReplaceWith(keys ?? []);</code></pre></div><div class="code-panel"><div class="code-panel-header"><span>DepartmentsGrid.razor</span><strong>UX GATE</strong></div><pre><code>&lt;<span class="type">CweEntityGrid</span>
+  Operations=<span class="str">"Departments"</span>
+  CreatePermission=<span class="str">"@DepartmentPermissions.Create"</span>
+  EditPermission=<span class="str">"@DepartmentPermissions.Update"</span>
+  DeletePermission=<span class="str">"@DepartmentPermissions.Delete"</span> /&gt;
+
+&lt;<span class="type">CxPermissionGate</span>
+  Permission=<span class="str">"@DepartmentPermissions.View"</span>&gt;
+  <span class="comment">...authorized page content...</span>
+&lt;/<span class="type">CxPermissionGate</span>&gt;</code></pre></div></div>
+      <div class="truth-callout"><strong>Important</strong><p>Client gating prevents confusion and unnecessary requests. It is never cited as proof of authorization; the server still decides.</p></div>
+    </div></section>
+
+    <section class="article-section surface"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">03 · HOSTILE CLIENT</span><h2>Assume the browser is controlled by an attacker.</h2></div><p>Every client-side artifact is inspectable and mutable. Security holds because the browser carries a request—not the authority to approve it.</p></div>
+      <table class="attack-table"><thead><tr><th>Attempt</th><th>What the attacker changes</th><th>Server outcome</th></tr></thead><tbody>
+        <tr><td>Reveal a hidden button</td><td>DOM or CSS makes Create visible.</td><td>The create handler resolves the caller and denies the missing key.</td></tr><tr><td>Forge local permission state</td><td>JavaScript cache claims <code>entities.department.create</code>.</td><td>Local state is never accepted as a grant; the server uses its own effective set.</td></tr><tr><td>Call the API manually</td><td>A crafted POST bypasses the page.</td><td>The authenticated route and handler check still execute.</td></tr><tr><td>Tamper with an identifier</td><td>The request targets another record or scope.</td><td>Application-state and relationship checks run on server-loaded data.</td></tr><tr><td>Reuse stale UI</td><td>A grant is revoked after the page loaded.</td><td>The live handler resolution sees the revoked permission and denies the operation.</td></tr><tr><td>Invoke AI indirectly</td><td>The assistant is asked to perform an unavailable mutation.</td><td>The tool is filtered by permission and the downstream handler rechecks.</td></tr>
+      </tbody></table>
+    </div></section>
+
+    <section class="article-section"><div class="tech-shell">
+      <div class="article-heading"><div><span class="section-number">04 · DEFENSE IN DEPTH</span><h2>One handler check is essential. It is not alone.</h2></div><p>Independent layers limit mistakes and normalize failure while preserving the handler as the decisive authorization boundary.</p></div>
+      <div class="security-layers"><article><span>Transport</span><h3>Authenticated endpoint groups</h3><p>Anonymous requests do not enter protected entity operations.</p></article><article><span>Application</span><h3>Handler permission checks</h3><p>Every operation checks the live effective set close to the business action.</p></article><article><span>Persistence</span><h3>Save pipeline safeguards</h3><p>Validation, authorization, and audit behavior are protected from shortcut writes.</p></article><article><span>Composition</span><h3>Analyzer enforcement</h3><p>Raw calls and unsafe placements become diagnostics during development.</p></article><article><span>AI</span><h3>Permission-aware registry</h3><p>Runtime tools cannot exceed page reachability or caller access.</p></article><article><span>Startup</span><h3>Catalog boot guard</h3><p>Known generated permissions and grants reconcile into one managed vocabulary.</p></article></div>
+      <div class="truth-callout"><strong>Effective set</strong><p>Access is resolved as set algebra across roles, job titles, and explicit user adjustments for the authenticated caller. Administrator behavior is deliberate—not a client flag.</p></div>
+    </div></section>
+
+    <section class="page-next"><div class="tech-shell"><div><span>Next engineering page</span><h2>See how one language entry becomes a complete translation catalog.</h2></div><a href="localization.html">Open localization →</a></div></section>
+  </main>
+  <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+</body>
+</html>

@@ -599,6 +599,10 @@ body { background: var(--paper); }
 .framework-map figcaption div { display: grid; grid-template-columns: auto 1fr; gap: .75rem; padding: .9rem 1rem; background: #091d2e; }
 .framework-map figcaption strong { color: var(--signal-light); font: 800 .6rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .framework-map figcaption span { color: #aebfca; font-size: .66rem; line-height: 1.45; }
+.engineering-reference-link { display: inline-flex; align-items: center; gap: .75rem; margin-top: 1.5rem; padding: .9rem 1.1rem; color: var(--ink); border: 1px solid var(--line); background: white; font-weight: 800; text-decoration: none; }
+.engineering-reference-link span { color: var(--signal); font-size: 1.15rem; }
+.engineering-reference-link:hover { color: white; border-color: var(--signal); background: var(--signal); }
+.engineering-reference-link:hover span { color: white; }
 
 .audience { background: var(--surface); }
 .audience-header,
