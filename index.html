@@ -25,12 +25,20 @@
       <span class="brand-mark" aria-hidden="true">C</span>
       <span class="brand-name">CodingWithEase</span>
     </a>
-    <nav class="site-nav" aria-label="Primary navigation">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" data-nav-toggle><span class="nav-toggle-lines" aria-hidden="true"></span></button>
+    <nav class="site-nav" id="site-navigation" aria-label="Primary navigation" data-site-nav>
       <a href="#system">The system</a>
       <a href="#proof">Proof</a>
       <a href="#ai">AI strategy</a>
       <a href="#lineage">History</a>
       <a href="engineering.html">Engineering</a>
+      <div class="mobile-nav-group">
+        <span>Engineering reference</span>
+        <a href="ai-agents.html">AI coding agents</a>
+        <a href="permissions.html">Permissions</a>
+        <a href="localization.html">Localization</a>
+        <a href="evidence.html">Evidence &amp; responsibilities</a>
+      </div>
       <a class="nav-cta" href="#services">Work with Elgibe</a>
     </nav>
   </header>
@@ -44,7 +52,7 @@
         <p class="hero-intro">CodingWithEase turns business models into secure, consistent .NET applications through explicit architecture, deterministic generation, and verification that fails loudly.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#system">See how it works <span aria-hidden="true">→</span></a>
-          <a class="button button-secondary" href="#proof">Inspect the evidence</a>
+          <a class="button button-secondary" href="engineering.html">Explore engineering</a>
         </div>
       </div>
 
@@ -122,6 +130,13 @@
         <h2 id="architecture-title">From business rules to a governed server–client application.</h2>
         <p>The business model remains the source of truth. <code>cwe-gen</code> turns it into repeatable infrastructure and one typed operations boundary, while engineers keep ownership of business behavior and custom UI.</p>
       </div>
+
+      <figure class="architecture-diagram">
+        <a href="assets/diagrams/framework-architecture.svg" aria-label="Open the full-size CodingWithEase architecture diagram">
+          <img src="assets/diagrams/framework-architecture.svg" width="1440" height="810" loading="lazy" alt="CodingWithEase architecture showing authored business truth flowing through Roslyn and cwe-gen into server infrastructure and browser UI joined by I Entity Operations.">
+        </a>
+        <figcaption><strong>System architecture</strong><span>Open the diagram to inspect it at full resolution.</span></figcaption>
+      </figure>
 
       <figure class="framework-map" aria-label="CodingWithEase architecture from authored business rules through cwe-gen to server infrastructure and browser UI">
         <div class="intent-zone">

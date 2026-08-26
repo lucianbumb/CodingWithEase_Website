@@ -7,7 +7,7 @@
   <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
 </head>
 <body class="engineering-body">
-  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <header class="site-header docs-header" data-header><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" data-nav-toggle><span class="nav-toggle-lines" aria-hidden="true"></span></button><nav class="site-nav" id="site-navigation" aria-label="Primary" data-site-nav><a class="docs-home" href="index.html">Home</a><div class="mobile-nav-group"><span>Engineering reference</span><a href="engineering.html">Entity to GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html" aria-current="page">Permissions</a><a href="localization.html">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a></div><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
   <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a class="active" href="permissions.html" aria-current="page">Permissions</a><a href="localization.html">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a></div></nav>
 
   <main>
@@ -27,6 +27,7 @@
 
     <section class="article-section"><div class="tech-shell">
       <div class="article-heading"><div><span class="section-number">00 · FIVE LINK CHAIN</span><h2>A permission is only real when every link exists.</h2></div><p>Generated declarations remove naming drift. Catalog and grants make the key manageable. The handler is the load-bearing security link; client gates communicate the same decision to the user.</p></div>
+      <figure class="engineering-diagram"><a href="assets/diagrams/permission-enforcement.svg" aria-label="Open the full-size permission enforcement diagram"><img src="assets/diagrams/permission-enforcement.svg" width="1440" height="810" loading="lazy" alt="Permission flow from generated key through catalog, grant resolution, server handler enforcement, and client gating, including rejection of a forged browser permission."></a><figcaption><strong>Permission enforcement</strong><span>Changing browser state cannot change the server-resolved caller.</span></figcaption></figure>
       <div class="security-chain"><article><span>01</span><h3>Generate key</h3><p><code>{module}.{entity}.{verb}</code> comes from the business surface.</p></article><article><span>02</span><h3>Publish catalog</h3><p>Known permissions are seeded and available to administration.</p></article><article><span>03</span><h3>Grant access</h3><p>Roles, job titles, and user overrides form the effective set.</p></article><article class="enforced"><span>04</span><h3>Enforce handler</h3><p>The server resolves the current authenticated caller and checks immediately before work.</p></article><article><span>05</span><h3>Gate the UI</h3><p>Buttons and pages reflect access without pretending to be the boundary.</p></article></div>
     </div></section>
 
@@ -80,5 +81,6 @@ permissionCache.ReplaceWith(keys ?? []);</code></pre></div><div class="code-pane
     <section class="page-next"><div class="tech-shell"><div><span>Next engineering page</span><h2>See how one language entry becomes a complete translation catalog.</h2></div><a href="localization.html">Open localization →</a></div></section>
   </main>
   <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase permission enforcement chain</title>
+  <desc id="desc">Permissions are generated, cataloged, granted, resolved for the authenticated caller, enforced on the server, and reflected in the client. A forged browser permission is rejected by the server.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker><style>.s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}.t{font-size:42px;font-weight:800;fill:#f5f5f5}.e{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.h{font-size:18px;font-weight:800}.p{font-size:14px}.n{font-size:12px;font-weight:800;letter-spacing:1px}</style></defs>
+  <rect width="1440" height="810" fill="#071724"/><text x="72" y="65" class="s e">PERMISSIONS - END-TO-END ENFORCEMENT</text><text x="72" y="108" class="s t">The browser communicates access. The server decides it.</text>
+  <rect x="68" y="162" width="1304" height="418" rx="10" fill="#0a2234" stroke="#294a61"/>
+  <text x="94" y="196" class="m n" fill="#8fa8b9">GENERATED AND SERVER-OWNED CHAIN</text>
+  <g transform="translate(96 232)">
+    <rect width="190" height="272" rx="7" fill="#f5f5f5"/><text x="20" y="34" class="m n" fill="#c6531a">01 - DECLARE</text><text x="20" y="75" class="s h" fill="#0b1f33">Permission key</text><text x="20" y="112" class="m p" fill="#174a73">hr.department.create</text><text x="20" y="155" class="s p" fill="#425a6b">Derived from entity</text><text x="20" y="181" class="s p" fill="#425a6b">and allowed verb</text><text x="20" y="231" class="m n" fill="#174a73">NO STRING DRIFT</text>
+  </g>
+  <g transform="translate(334 232)">
+    <rect width="190" height="272" rx="7" fill="#0d3550"/><text x="20" y="34" class="m n" fill="#ffad7f">02 - CATALOG</text><text x="20" y="75" class="s h" fill="#f5f5f5">Grantable set</text><text x="20" y="112" class="s p" fill="#c7d8e2">Known keys are seeded</text><text x="20" y="138" class="s p" fill="#c7d8e2">for administration</text><text x="20" y="181" class="s p" fill="#c7d8e2">Roles + job titles</text><text x="20" y="207" class="s p" fill="#c7d8e2">+ user overrides</text>
+  </g>
+  <g transform="translate(572 232)">
+    <rect width="190" height="272" rx="7" fill="#0d3550"/><text x="20" y="34" class="m n" fill="#ffad7f">03 - RESOLVE</text><text x="20" y="75" class="s h" fill="#f5f5f5">Effective set</text><text x="20" y="112" class="s p" fill="#c7d8e2">Authenticated identity</text><text x="20" y="138" class="s p" fill="#c7d8e2">+ grants + scope</text><rect x="20" y="175" width="150" height="60" rx="3" fill="#143f5d"/><text x="37" y="201" class="m n" fill="#ffad7f">CURRENT CALLER</text><text x="37" y="223" class="s p" fill="white">server-resolved</text>
+  </g>
+  <g transform="translate(810 218)">
+    <rect width="224" height="300" rx="7" fill="#c6531a"/><text x="20" y="34" class="m n" fill="#fff3ec">04 - ENFORCE</text><text x="20" y="78" class="s h" fill="white">Handler boundary</text><text x="20" y="118" class="s p" fill="#fff3ec">Check immediately</text><text x="20" y="144" class="s p" fill="#fff3ec">before business work</text><rect x="20" y="180" width="184" height="76" rx="3" fill="#9f390c"/><text x="38" y="210" class="m n" fill="#ffd5c0">DENY BY DEFAULT</text><text x="38" y="237" class="s p" fill="white">403 / forbidden</text>
+  </g>
+  <g transform="translate(1082 232)">
+    <rect width="252" height="272" rx="7" fill="#f5f5f5"/><text x="20" y="34" class="m n" fill="#c6531a">05 - REFLECT</text><text x="20" y="75" class="s h" fill="#0b1f33">Client gate</text><text x="20" y="112" class="s p" fill="#425a6b">Navigation, page and</text><text x="20" y="138" class="s p" fill="#425a6b">button match access</text><rect x="20" y="175" width="212" height="60" rx="3" fill="#e4ebef"/><text x="38" y="200" class="m n" fill="#174a73">UX ONLY</text><text x="38" y="223" class="s p" fill="#0b1f33">never the security boundary</text>
+  </g>
+  <g stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"><path d="M286 368H322"/><path d="M524 368H560"/><path d="M762 368H798"/><path d="M1034 368H1070"/></g>
+  <path d="M1210 620C1210 685 905 685 905 548" fill="none" stroke="#ff8a4c" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#a)"/>
+  <rect x="853" y="638" width="421" height="82" rx="5" fill="#321711" stroke="#c6531a"/><text x="878" y="670" class="m n" fill="#ffad7f">HOSTILE CLIENT MODIFIES LOCAL PERMISSION</text><text x="878" y="698" class="s p" fill="#f5f5f5">Request still reaches step 04 and is rejected by server identity.</text>
+  <text x="72" y="766" class="m n" fill="#ffad7f">SEPARATE AXIS</text><text x="205" y="766" class="s p" fill="#d7e1e7">A granted verb still passes through row-level scope and ownership policy.</text>
+</svg>

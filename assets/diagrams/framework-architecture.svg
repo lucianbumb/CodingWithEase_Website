@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase server-client architecture</title>
+  <desc id="desc">Business entities, commands, queries, and DTOs are analyzed by Roslyn and cwe-gen. Generated server infrastructure and browser components communicate through typed operations, with server-side permissions and verification around the complete system.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker><style>.s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}.t{font-size:42px;font-weight:800;fill:#f5f5f5}.e{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.h{font-size:18px;font-weight:800}.p{font-size:14px}.n{font-size:12px;font-weight:800;letter-spacing:1px}</style></defs>
+  <rect width="1440" height="810" fill="#071724"/><text x="72" y="65" class="s e">CODINGWITHEASE - SERVER-CLIENT ARCHITECTURE</text><text x="72" y="108" class="s t">Business truth in. Governed application out.</text>
+  <rect x="70" y="160" width="1300" height="118" rx="8" fill="#f5f5f5"/>
+  <text x="96" y="194" class="m n" fill="#c6531a">01 - AUTHORED BUSINESS TRUTH</text>
+  <g class="m" font-size="15" font-weight="800" fill="#174a73"><text x="104" y="240">Business rules</text><text x="330" y="240">Entities</text><text x="500" y="240">Commands</text><text x="690" y="240">Queries</text><text x="850" y="240">Custom DTOs</text><text x="1070" y="240">Custom UI</text></g>
+  <path d="M720 278V326" stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"/>
+  <rect x="475" y="330" width="490" height="116" rx="58" fill="#c6531a"/>
+  <text x="720" y="370" text-anchor="middle" class="m n" fill="#fff3ec">02 - ROSLYN SYNTAXTREE + CWE-GEN</text><text x="720" y="406" text-anchor="middle" class="s h" fill="white">Analyze - validate - generate - converge</text><text x="720" y="430" text-anchor="middle" class="m" font-size="12" fill="#ffd6c2">readable, diffable, deterministic C#</text>
+  <path d="M620 447V486" stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"/><path d="M820 447V486" stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"/>
+  <rect x="70" y="490" width="525" height="202" rx="8" fill="#0d3550" stroke="#37647f"/>
+  <text x="96" y="526" class="m n" fill="#ffad7f">03A - SERVER - SECURITY BOUNDARY</text><text x="96" y="564" class="s h" fill="#f5f5f5">Generated execution rails</text>
+  <text x="96" y="602" class="s p" fill="#c7d8e2">Slim endpoints - CQ handlers - repositories</text><text x="96" y="631" class="s p" fill="#c7d8e2">permission enforcement - validation - audit</text><text x="96" y="660" class="s p" fill="#c7d8e2">AI tools - documents - errors - transactions</text>
+  <rect x="845" y="490" width="525" height="202" rx="8" fill="#f5f5f5"/>
+  <text x="871" y="526" class="m n" fill="#c6531a">03B - BROWSER CLIENT</text><text x="871" y="564" class="s h" fill="#0b1f33">Typed application experience</text>
+  <text x="871" y="602" class="s p" fill="#425a6b">PageModels - GridViews - forms - navigation</text><text x="871" y="631" class="s p" fill="#425a6b">permission-aware actions - localization</text><text x="871" y="660" class="s p" fill="#425a6b">page-aware AI assistant - PWA shell</text>
+  <rect x="574" y="536" width="292" height="112" rx="56" fill="#c6531a" stroke="#ffad7f" stroke-width="3"/>
+  <text x="720" y="570" text-anchor="middle" class="m n" fill="#fff3ec">TYPED BUSINESS BOUNDARY</text><text x="720" y="605" text-anchor="middle" class="m" font-size="17" font-weight="800" fill="white">I{Entity}Operations</text><text x="720" y="631" text-anchor="middle" class="s p" fill="#fff3ec">server implementation - HTTP client</text>
+  <path d="M595 592H574" stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"/><path d="M845 592H866" stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"/>
+  <rect x="70" y="730" width="1300" height="45" rx="4" fill="#0b263a" stroke="#294a61"/><text x="94" y="758" class="m n" fill="#ffad7f">PROOF RING</text><text x="198" y="758" class="s p" fill="#d7e1e7">analyzers - tests - regeneration - permission probes - query measurements - release smoke</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase localization pipeline</title>
+  <desc id="desc">Framework, generated, and application translation sources form an English catalog. Adding a culture seeds missing entries, supports human or AI translation, review, and runtime fallback.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker><style>.s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}.t{font-size:42px;font-weight:800;fill:#f5f5f5}.e{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.h{font-size:18px;font-weight:800}.p{font-size:14px}.n{font-size:12px;font-weight:800;letter-spacing:1px}</style></defs>
+  <rect width="1440" height="810" fill="#071724"/><text x="72" y="65" class="s e">LOCALIZATION - ADD A LANGUAGE WITHOUT REWRITING THE APP</text><text x="72" y="108" class="s t">Discover once. Seed safely. Translate incrementally.</text>
+  <g transform="translate(70 180)">
+    <rect width="290" height="430" rx="8" fill="#0d3550" stroke="#37647f"/><text x="24" y="38" class="m n" fill="#ffad7f">01 - SOURCE FAMILIES</text><text x="24" y="78" class="s h" fill="#f5f5f5">Discover keys</text>
+    <rect x="24" y="110" width="242" height="70" rx="4" fill="#143f5d"/><text x="43" y="138" class="m n" fill="#ffad7f">FRAMEWORK</text><text x="43" y="163" class="s p" fill="white">shared components + errors</text>
+    <rect x="24" y="192" width="242" height="70" rx="4" fill="#143f5d"/><text x="43" y="220" class="m n" fill="#ffad7f">GENERATED</text><text x="43" y="245" class="s p" fill="white">entities + fields + actions</text>
+    <rect x="24" y="274" width="242" height="70" rx="4" fill="#143f5d"/><text x="43" y="302" class="m n" fill="#ffad7f">APPLICATION</text><text x="43" y="327" class="s p" fill="white">business-specific messages</text>
+    <text x="24" y="388" class="s p" fill="#c7d8e2">Stable keys form one</text><text x="24" y="412" class="s p" fill="#c7d8e2">authoritative source catalog.</text>
+  </g>
+  <g transform="translate(430 180)">
+    <rect width="250" height="430" rx="8" fill="#f5f5f5"/><text x="24" y="38" class="m n" fill="#c6531a">02 - ADD CULTURE</text><text x="24" y="78" class="s h" fill="#0b1f33">de-DE</text>
+    <text x="24" y="120" class="s p" fill="#425a6b">Display name</text><text x="24" y="150" class="s p" fill="#425a6b">Enabled + default state</text><text x="24" y="180" class="s p" fill="#425a6b">Ordering + direction</text>
+    <rect x="24" y="224" width="202" height="110" rx="4" fill="#e4ebef"/><text x="42" y="256" class="m n" fill="#174a73">SYNC</text><text x="42" y="286" class="s p" fill="#0b1f33">Create only missing</text><text x="42" y="312" class="s p" fill="#0b1f33">target entries</text>
+    <text x="24" y="388" class="s p" fill="#425a6b">No page rewrite.</text>
+  </g>
+  <g transform="translate(750 180)">
+    <rect width="290" height="430" rx="8" fill="#c6531a"/><text x="24" y="38" class="m n" fill="#fff3ec">03 - TRANSLATE</text><text x="24" y="78" class="s h" fill="white">Resumable workflow</text>
+    <rect x="24" y="110" width="242" height="74" rx="4" fill="#a83e0e"/><text x="43" y="140" class="m n" fill="#ffd0b8">HUMAN EDIT</text><text x="43" y="165" class="s p" fill="white">business terminology</text>
+    <rect x="24" y="196" width="242" height="74" rx="4" fill="#a83e0e"/><text x="43" y="226" class="m n" fill="#ffd0b8">AI BATCH</text><text x="43" y="251" class="s p" fill="white">permission-gated + resumable</text>
+    <rect x="24" y="282" width="242" height="74" rx="4" fill="#a83e0e"/><text x="43" y="312" class="m n" fill="#ffd0b8">REVIEW</text><text x="43" y="337" class="s p" fill="white">approve before publication</text>
+    <text x="24" y="400" class="s p" fill="#fff3ec">Progress is durable; retries</text><text x="24" y="423" class="s p" fill="#fff3ec">do not restart completed work.</text>
+  </g>
+  <g transform="translate(1110 180)">
+    <rect width="260" height="430" rx="8" fill="#f5f5f5"/><text x="24" y="38" class="m n" fill="#c6531a">04 - RUNTIME</text><text x="24" y="78" class="s h" fill="#0b1f33">Resolve safely</text>
+    <text x="24" y="123" class="m p" fill="#174a73">de-DE value</text><text x="24" y="153" class="s p" fill="#425a6b">- when missing</text><text x="24" y="183" class="m p" fill="#174a73">English source</text><text x="24" y="213" class="s p" fill="#425a6b">- when missing</text><text x="24" y="243" class="m p" fill="#174a73">stable key</text>
+    <rect x="24" y="286" width="212" height="70" rx="4" fill="#e4ebef"/><text x="43" y="316" class="m n" fill="#174a73">VISIBLE FALLBACK</text><text x="43" y="341" class="s p" fill="#0b1f33">never blank UI</text>
+    <text x="24" y="400" class="s p" fill="#425a6b">Culture choice follows</text><text x="24" y="423" class="s p" fill="#425a6b">the authenticated user.</text>
+  </g>
+  <g stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"><path d="M360 395H418"/><path d="M680 395H738"/><path d="M1040 395H1098"/></g>
+  <rect x="70" y="662" width="1300" height="76" rx="5" fill="#0b263a" stroke="#294a61"/><text x="96" y="693" class="m n" fill="#ffad7f">ENGINEERING CONTROL</text><text x="96" y="718" class="s p" fill="#d7e1e7">Translators manage language quality; developers manage source keys, fallback behavior, permissions, and deployment.</text>
+</svg>

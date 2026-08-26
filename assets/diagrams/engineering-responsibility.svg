@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase responsibility boundary</title>
+  <desc id="desc">The framework owns deterministic infrastructure and enforcement rails. The developer owns business correctness, access policy, query performance, custom code, and application evidence.</desc>
+  <defs><style>.s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}.t{font-size:42px;font-weight:800;fill:#f5f5f5}.e{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.h{font-size:21px;font-weight:800}.p{font-size:15px}.n{font-size:12px;font-weight:800;letter-spacing:1px}</style></defs>
+  <rect width="1440" height="810" fill="#071724"/><text x="72" y="65" class="s e">QUALITY CONTRACT - AUTOMATION DOES NOT REMOVE ACCOUNTABILITY</text><text x="72" y="108" class="s t">The framework owns the rails. The team owns the result.</text>
+  <rect x="70" y="168" width="610" height="474" rx="9" fill="#0d3550" stroke="#37647f"/>
+  <rect x="760" y="168" width="610" height="474" rx="9" fill="#f5f5f5"/>
+  <text x="102" y="210" class="m n" fill="#ffad7f">FRAMEWORK RESPONSIBILITY</text><text x="102" y="258" class="s h" fill="#f5f5f5">Repeatable mechanics and checkpoints</text>
+  <g class="s p" fill="#d3e0e8">
+    <text x="126" y="313">- Deterministic generated C# and typed contracts</text>
+    <text x="126" y="356">- Authenticated endpoints and handler checks</text>
+    <text x="126" y="399">- Permission catalog, audit and save pipeline</text>
+    <text x="126" y="442">- Paging, caching hooks and query diagnostics</text>
+    <text x="126" y="485">- Composition analyzers and protected folders</text>
+    <text x="126" y="528">- Regeneration, build and release verification</text>
+  </g>
+  <rect x="102" y="564" width="546" height="50" rx="4" fill="#143f5d"/><text x="122" y="596" class="m n" fill="#ffad7f">MAKES KNOWN UNSAFE SHAPES HARD TO SHIP</text>
+
+  <text x="792" y="210" class="m n" fill="#c6531a">DEVELOPER RESPONSIBILITY</text><text x="792" y="258" class="s h" fill="#0b1f33">Application truth and measured fitness</text>
+  <g class="s p" fill="#40586a">
+    <text x="816" y="313">" Correct invariants, workflows and edge cases</text>
+    <text x="816" y="356">" Role grants, row scopes and ownership policy</text>
+    <text x="816" y="399">" Query plans, indexes, payloads and response time</text>
+    <text x="816" y="442">" Custom code, dependencies and configuration</text>
+    <text x="816" y="485">" Threat review and ordinary-persona tests</text>
+    <text x="816" y="528">" Production-shaped acceptance evidence</text>
+  </g>
+  <rect x="792" y="564" width="546" height="50" rx="4" fill="#e4ebef"/><text x="812" y="596" class="m n" fill="#174a73">PROVES THIS APP IS CORRECT, FAST AND SAFE</text>
+
+  <rect x="586" y="320" width="268" height="178" rx="89" fill="#c6531a" stroke="#ffad7f" stroke-width="3"/>
+  <text x="720" y="373" text-anchor="middle" class="m n" fill="#fff3ec">SHARED DEFINITION OF DONE</text>
+  <text x="720" y="410" text-anchor="middle" class="s h" fill="white">Executable evidence</text>
+  <text x="720" y="444" text-anchor="middle" class="s p" fill="#fff3ec">build - test - inspect</text>
+  <text x="720" y="469" text-anchor="middle" class="s p" fill="#fff3ec">measure - review - smoke</text>
+  <path d="M70 692H1370" stroke="#294a61"/>
+  <text x="70" y="741" class="m n" fill="#ffad7f">HONEST CLAIM</text><text x="196" y="741" class="s p" fill="#d7e1e7">CodingWithEase reduces vulnerability classes by construction; it does not certify unknown application code by assertion.</text>
+</svg>

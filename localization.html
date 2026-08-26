@@ -7,7 +7,7 @@
   <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
 </head>
 <body class="engineering-body">
-  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <header class="site-header docs-header" data-header><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" data-nav-toggle><span class="nav-toggle-lines" aria-hidden="true"></span></button><nav class="site-nav" id="site-navigation" aria-label="Primary" data-site-nav><a class="docs-home" href="index.html">Home</a><div class="mobile-nav-group"><span>Engineering reference</span><a href="engineering.html">Entity to GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html" aria-current="page">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a></div><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
   <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a class="active" href="localization.html" aria-current="page">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a></div></nav>
 
   <main>
@@ -27,6 +27,7 @@
 
     <section class="article-section"><div class="tech-shell">
       <div class="article-heading"><div><span class="section-number">00 · COMPLETE FLOW</span><h2>A language is configuration—not a rewrite.</h2></div><p>The system discovers what can be translated before translators start. Adding a language creates the missing entries; it does not require rebuilding every page.</p></div>
+      <figure class="engineering-diagram"><a href="assets/diagrams/localization-pipeline.svg" aria-label="Open the full-size localization workflow diagram"><img src="assets/diagrams/localization-pipeline.svg" width="1440" height="810" loading="lazy" alt="Localization workflow from framework, generated and application source catalogs through culture creation, translation review, and safe runtime fallback."></a><figcaption><strong>Localization workflow</strong><span>A new culture is synchronized and reviewed without rewriting application pages.</span></figcaption></figure>
       <div class="localization-flow"><article><span>01</span><h3>Discover catalog</h3><p>Framework, generated, and application-owned sources contribute localizable keys.</p></article><article><span>02</span><h3>Add culture</h3><p>Store BCP-47 code, display name, enabled/default state, and ordering.</p></article><article><span>03</span><h3>Seed &amp; sync</h3><p>Missing target entries are created from the English source catalog.</p></article><article><span>04</span><h3>Translate &amp; review</h3><p>Edit manually or run resumable AI batches, then approve reviewed output.</p></article></div>
     </div></section>
 
@@ -76,5 +77,6 @@
     <section class="page-next"><div class="tech-shell"><div><span>Next engineering page</span><h2>See what the framework guarantees—and what remains developer responsibility.</h2></div><a href="evidence.html">Open evidence →</a></div></section>
   </main>
   <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase entity to GridView pipeline</title>
+  <desc id="desc">An engineer authors an entity, command, query, and DTO. Roslyn and cwe-gen create server and client infrastructure joined by a typed operations contract, then verification checks the result.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#020b12" flood-opacity=".35"/></filter>
+    <style>
+      .sans{font-family:Inter,Segoe UI,Arial,sans-serif}.mono{font-family:Consolas,monospace}.eyebrow{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.title{font-size:42px;font-weight:800;fill:#f5f5f5}.label{font-size:18px;font-weight:800;fill:#f5f5f5}.small{font-size:14px;fill:#adc0ce}.chip{font-size:13px;font-weight:700;fill:#d9e4eb}.num{font-size:13px;font-weight:800;fill:#ffad7f}
+    </style>
+  </defs>
+  <rect width="1440" height="810" fill="#071724"/>
+  <path d="M0 125H1440M0 715H1440" stroke="#183449"/>
+  <text x="72" y="65" class="sans eyebrow">ENTITY TO GRIDVIEW - GOVERNED DELIVERY PATH</text>
+  <text x="72" y="108" class="sans title">Business intent crosses one typed boundary.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="175" width="270" height="455" rx="8" fill="#0b263a" stroke="#2a4b61"/>
+    <text x="98" y="211" class="mono num">01 - DEVELOPER OWNED</text>
+    <text x="98" y="253" class="sans label">Business source</text>
+    <rect x="98" y="284" width="218" height="56" rx="4" fill="#143d59"/><text x="120" y="318" class="mono chip">[CxEntity] Department</text>
+    <rect x="98" y="352" width="218" height="56" rx="4" fill="#143d59"/><text x="120" y="386" class="mono chip">Commands + rules</text>
+    <rect x="98" y="420" width="218" height="56" rx="4" fill="#143d59"/><text x="120" y="454" class="mono chip">Queries + projections</text>
+    <rect x="98" y="488" width="218" height="56" rx="4" fill="#143d59"/><text x="120" y="522" class="mono chip">Custom DTOs + UI intent</text>
+    <text x="98" y="582" class="sans small">Correct business behavior</text><text x="98" y="605" class="sans small">remains an engineering decision.</text>
+
+    <rect x="411" y="245" width="225" height="315" rx="8" fill="#c6531a"/>
+    <text x="437" y="281" class="mono" font-size="13" font-weight="800" fill="#fff3ec">02 - DETERMINISTIC TOOL</text>
+    <text x="437" y="331" class="mono" font-size="32" font-weight="800" fill="white">cwe-gen</text>
+    <text x="437" y="371" class="sans" font-size="15" fill="#fff3ec">Roslyn SyntaxTree</text>
+    <path d="M437 398H610" stroke="#ffb38c"/>
+    <text x="437" y="431" class="sans" font-size="14" fill="white">Analyze shapes</text>
+    <text x="437" y="458" class="sans" font-size="14" fill="white">Validate conventions</text>
+    <text x="437" y="485" class="sans" font-size="14" fill="white">Emit canonical C#</text>
+    <text x="437" y="522" class="mono" font-size="12" fill="#ffe0d1">same input - same files</text>
+
+    <rect x="705" y="175" width="290" height="455" rx="8" fill="#0d3550" stroke="#37647f"/>
+    <text x="731" y="211" class="mono num">03A - SERVER RAILS</text>
+    <text x="731" y="253" class="sans label">Authoritative execution</text>
+    <text x="731" y="301" class="sans small">Slim authenticated endpoints</text>
+    <text x="731" y="337" class="sans small">CQ handlers + validation</text>
+    <text x="731" y="373" class="sans small">Repositories + transactions</text>
+    <text x="731" y="409" class="sans small">Generated permission catalog</text>
+    <rect x="731" y="447" width="238" height="76" rx="4" fill="#ff8a4c"/>
+    <text x="750" y="478" class="mono" font-size="12" font-weight="800" fill="#0b1f33">SECURITY BOUNDARY</text>
+    <text x="750" y="504" class="sans" font-size="15" font-weight="800" fill="#0b1f33">Handler checks caller again</text>
+    <text x="731" y="575" class="sans small">Audit - errors - AI tools</text>
+
+    <rect x="1070" y="175" width="298" height="455" rx="8" fill="#f5f5f5"/>
+    <text x="1096" y="211" class="mono" font-size="13" font-weight="800" fill="#c6531a">03B - BROWSER CLIENT</text>
+    <text x="1096" y="253" class="sans" font-size="18" font-weight="800" fill="#0b1f33">Typed UI composition</text>
+    <text x="1096" y="301" class="sans" font-size="14" fill="#40586a">Typed HTTP operations</text>
+    <text x="1096" y="337" class="sans" font-size="14" fill="#40586a">Generated PageModels</text>
+    <text x="1096" y="373" class="sans" font-size="14" fill="#40586a">GridView + edit forms</text>
+    <text x="1096" y="409" class="sans" font-size="14" fill="#40586a">Permission-aware actions</text>
+    <rect x="1096" y="447" width="246" height="76" rx="4" fill="#e4ebef"/>
+    <text x="1116" y="477" class="mono" font-size="12" font-weight="800" fill="#174a73">ONE UI DEPENDENCY</text>
+    <text x="1116" y="503" class="mono" font-size="15" font-weight="800" fill="#0b1f33">IDepartmentOperations</text>
+    <text x="1096" y="575" class="sans" font-size="14" fill="#40586a">UI never owns authorization</text>
+  </g>
+
+  <path d="M342 403H399" stroke="#ff8a4c" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M636 403H693" stroke="#ff8a4c" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M995 403H1058" stroke="#ff8a4c" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="70" y="760" class="mono" font-size="14" fill="#91a8b8">VERIFY</text>
+  <text x="150" y="760" class="sans" font-size="15" fill="#d7e1e7">build</text><circle cx="210" cy="755" r="3" fill="#ff8a4c"/>
+  <text x="230" y="760" class="sans" font-size="15" fill="#d7e1e7">tests</text><circle cx="280" cy="755" r="3" fill="#ff8a4c"/>
+  <text x="300" y="760" class="sans" font-size="15" fill="#d7e1e7">composition analysis</text><circle cx="460" cy="755" r="3" fill="#ff8a4c"/>
+  <text x="480" y="760" class="sans" font-size="15" fill="#d7e1e7">second-run convergence</text><circle cx="665" cy="755" r="3" fill="#ff8a4c"/>
+  <text x="685" y="760" class="sans" font-size="15" fill="#d7e1e7">ordinary-persona authorization</text>
+</svg>

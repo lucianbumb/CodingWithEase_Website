@@ -10,9 +10,10 @@
   <link rel="stylesheet" href="assets/engineering.css">
 </head>
 <body class="engineering-body">
-  <header class="site-header docs-header">
+  <header class="site-header docs-header" data-header>
     <a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a>
-    <nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" data-nav-toggle><span class="nav-toggle-lines" aria-hidden="true"></span></button>
+    <nav class="site-nav" id="site-navigation" aria-label="Primary" data-site-nav><a class="docs-home" href="index.html">Home</a><div class="mobile-nav-group"><span>Engineering reference</span><a href="engineering.html">Entity to GridView</a><a href="ai-agents.html" aria-current="page">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a></div><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav>
   </header>
   <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner">
     <a href="engineering.html">Entity → GridView</a><a class="active" href="ai-agents.html" aria-current="page">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html">Localization</a><a href="evidence.html">Evidence &amp; responsibilities</a>
@@ -32,6 +33,7 @@
 
     <section class="article-section"><div class="tech-shell">
       <div class="article-heading"><div><span class="section-number">00 · THE DIFFERENCE</span><h2>From probabilistic suggestion to governed implementation.</h2></div><p>The agent still interprets business intent. It does not invent framework syntax from stale examples or repeatedly hand-code infrastructure already owned by the toolchain.</p></div>
+      <figure class="engineering-diagram"><a href="assets/diagrams/ai-deterministic-delivery.svg" aria-label="Open the full-size governed AI delivery diagram"><img src="assets/diagrams/ai-deterministic-delivery.svg" width="1440" height="810" loading="lazy" alt="AI-assisted development flow from business intent through capability discovery, deterministic generation, analyzers, and release evidence."></a><figcaption><strong>Governed AI delivery</strong><span>Version truth and executable checks constrain probabilistic suggestions.</span></figcaption></figure>
       <div class="thesis-flow"><article><h3>Unbounded AI coding</h3><p>User → model → documentation fragments → plausible code. The result may compile while violating architecture, authorization, localization, or component composition.</p></article><div class="flow-arrow" aria-hidden="true">→</div><article><h3>CodingWithEase</h3><p>User → model → discovered capability → canonical framework output. Generated code and analyzers turn the framework version itself into the authority.</p></article></div>
       <div class="truth-callout"><strong>Not “AI slop”</strong><p>The claim is not that every generated feature is automatically correct. The claim is that AI output must enter an engineering system where mechanics converge, unsafe shapes are rejected, security is rechecked, and verification is reproducible.</p></div>
     </div></section>
@@ -66,5 +68,6 @@
     <section class="page-next"><div class="tech-shell"><div><span>Next engineering page</span><h2>See the five links that make permissions enforceable.</h2></div><a href="permissions.html">Open permissions →</a></div></section>
   </main>
   <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

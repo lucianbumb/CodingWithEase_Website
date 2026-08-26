@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">How CodingWithEase governs AI-assisted development</title>
+  <desc id="desc">Business intent moves through capability discovery, bounded authoring, deterministic generation, analyzers, and human verification before release.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker><style>.s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}.t{font-size:42px;font-weight:800;fill:#f5f5f5}.e{font-size:15px;font-weight:800;letter-spacing:2px;fill:#ffad7f}.h{font-size:19px;font-weight:800}.p{font-size:14px}.n{font-size:12px;font-weight:800;letter-spacing:1px}</style></defs>
+  <rect width="1440" height="810" fill="#071724"/><path d="M0 126H1440M0 703H1440" stroke="#173449"/>
+  <text x="72" y="65" class="s e">AI CODING AGENTS - CONSTRAINED DELIVERY SYSTEM</text><text x="72" y="108" class="s t">The model proposes. The system converges.</text>
+  <g transform="translate(70 190)">
+    <rect width="238" height="430" rx="8" fill="#f5f5f5"/>
+    <text x="24" y="38" class="m n" fill="#c6531a">01 - INTENT</text><text x="24" y="82" class="s h" fill="#0b1f33">Business request</text>
+    <text x="24" y="124" class="s p" fill="#425a6b">Entity + invariants</text><text x="24" y="154" class="s p" fill="#425a6b">Command + query intent</text><text x="24" y="184" class="s p" fill="#425a6b">Acceptance criteria</text>
+    <rect x="24" y="233" width="190" height="112" rx="4" fill="#e4ebef"/><text x="42" y="265" class="m n" fill="#174a73">HUMAN OWNS</text><text x="42" y="296" class="s p" fill="#0b1f33">Correct business meaning</text><text x="42" y="323" class="s p" fill="#0b1f33">and final acceptance</text>
+  </g>
+  <g transform="translate(350 190)">
+    <rect width="238" height="430" rx="8" fill="#0d3550" stroke="#37647f"/>
+    <text x="24" y="38" class="m n" fill="#ffad7f">02 - DISCOVER</text><text x="24" y="82" class="s h" fill="#f5f5f5">Version truth</text>
+    <text x="24" y="124" class="m p" fill="#c8d8e2">cwe guide</text><text x="24" y="154" class="m p" fill="#c8d8e2">dotnet-ai init</text><text x="24" y="184" class="m p" fill="#c8d8e2">list capabilities</text>
+    <rect x="24" y="233" width="190" height="112" rx="4" fill="#143f5d"/><text x="42" y="265" class="m n" fill="#ffad7f">NO GUESSING</text><text x="42" y="296" class="s p" fill="#f5f5f5">Installed assemblies define</text><text x="42" y="323" class="s p" fill="#f5f5f5">the available API surface</text>
+  </g>
+  <g transform="translate(630 190)">
+    <rect width="238" height="430" rx="8" fill="#c6531a"/>
+    <text x="24" y="38" class="m n" fill="#fff3ec">03 - GENERATE</text><text x="24" y="82" class="s h" fill="white">Canonical output</text>
+    <text x="24" y="124" class="s p" fill="#fff3ec">Roslyn source model</text><text x="24" y="154" class="s p" fill="#fff3ec">Deterministic ordering</text><text x="24" y="184" class="s p" fill="#fff3ec">Visible generated C#</text>
+    <rect x="24" y="233" width="190" height="112" rx="4" fill="#a83e0e"/><text x="42" y="265" class="m n" fill="#ffd0b8">CONVERGENCE</text><text x="42" y="296" class="s p" fill="white">Same model produces</text><text x="42" y="323" class="s p" fill="white">the same infrastructure</text>
+  </g>
+  <g transform="translate(910 190)">
+    <rect width="238" height="430" rx="8" fill="#0d3550" stroke="#37647f"/>
+    <text x="24" y="38" class="m n" fill="#ffad7f">04 - REJECT</text><text x="24" y="82" class="s h" fill="#f5f5f5">Unsafe shapes</text>
+    <text x="24" y="124" class="s p" fill="#c8d8e2">Roslyn diagnostics</text><text x="24" y="154" class="s p" fill="#c8d8e2">CheckComposition</text><text x="24" y="184" class="s p" fill="#c8d8e2">Permission probes</text>
+    <rect x="24" y="233" width="190" height="112" rx="4" fill="#143f5d"/><text x="42" y="265" class="m n" fill="#ffad7f">FAIL LOUDLY</text><text x="42" y="296" class="s p" fill="#f5f5f5">Plausible but invalid code</text><text x="42" y="323" class="s p" fill="#f5f5f5">cannot pass silently</text>
+  </g>
+  <g transform="translate(1190 190)">
+    <rect width="180" height="430" rx="8" fill="#f5f5f5"/>
+    <text x="22" y="38" class="m n" fill="#c6531a">05 - PROVE</text><text x="22" y="82" class="s h" fill="#0b1f33">Release</text>
+    <text x="22" y="124" class="s p" fill="#425a6b">Tests</text><text x="22" y="154" class="s p" fill="#425a6b">Clean regeneration</text><text x="22" y="184" class="s p" fill="#425a6b">Security personas</text><text x="22" y="214" class="s p" fill="#425a6b">Startup smoke</text>
+    <rect x="22" y="254" width="136" height="91" rx="4" fill="#e4ebef"/><text x="39" y="287" class="m n" fill="#174a73">EVIDENCE</text><text x="39" y="318" class="s p" fill="#0b1f33">Reviewable result</text>
+  </g>
+  <g stroke="#ff8a4c" stroke-width="4" marker-end="url(#a)"><path d="M308 405H338"/><path d="M588 405H618"/><path d="M868 405H898"/><path d="M1148 405H1178"/></g>
+  <text x="72" y="756" class="m n" fill="#ffad7f">NOT AI SLOP</text><text x="205" y="756" class="s" font-size="15" fill="#d7e1e7">Business meaning is reviewed - infrastructure is canonical - security is server-enforced - failures produce evidence</text>
+</svg>

@@ -7,7 +7,7 @@
   <link rel="icon" href="assets/favicon.png"><link rel="stylesheet" href="assets/styles.css"><link rel="stylesheet" href="assets/engineering.css">
 </head>
 <body class="engineering-body">
-  <header class="site-header docs-header"><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><nav class="site-nav" aria-label="Primary"><a class="docs-home" href="index.html">Overview</a><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
+  <header class="site-header docs-header" data-header><a class="brand" href="index.html" aria-label="CodingWithEase home"><span class="brand-mark">C</span><span class="brand-name">CodingWithEase</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" data-nav-toggle><span class="nav-toggle-lines" aria-hidden="true"></span></button><nav class="site-nav" id="site-navigation" aria-label="Primary" data-site-nav><a class="docs-home" href="index.html">Home</a><div class="mobile-nav-group"><span>Engineering reference</span><a href="engineering.html">Entity to GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html">Localization</a><a href="evidence.html" aria-current="page">Evidence &amp; responsibilities</a></div><a class="nav-cta" href="https://elgibesolutions.net/en/contact">Work with Elgibe</a></nav></header>
   <nav class="engineering-tabs" aria-label="Engineering reference"><div class="engineering-tabs-inner"><a href="engineering.html">Entity → GridView</a><a href="ai-agents.html">AI coding agents</a><a href="permissions.html">Permissions</a><a href="localization.html">Localization</a><a class="active" href="evidence.html" aria-current="page">Evidence &amp; responsibilities</a></div></nav>
 
   <main>
@@ -29,6 +29,7 @@
 
     <section class="article-section"><div class="tech-shell">
       <div class="article-heading"><div><span class="section-number">00 · RESPONSIBILITY CONTRACT</span><h2>Automation removes repetition—not accountability.</h2></div><p>The framework can make safe mechanics the default and unsafe shortcuts visible. Only the application team knows whether the business decision, data scope, response time, and operational outcome are correct.</p></div>
+      <figure class="engineering-diagram"><a href="assets/diagrams/engineering-responsibility.svg" aria-label="Open the full-size engineering responsibility diagram"><img src="assets/diagrams/engineering-responsibility.svg" width="1440" height="810" loading="lazy" alt="Responsibility boundary showing framework-owned deterministic infrastructure beside developer-owned business correctness, security policy, query performance, and application evidence."></a><figcaption><strong>Responsibility boundary</strong><span>Automation removes repetition; the delivery team remains accountable for the application.</span></figcaption></figure>
       <table class="attack-table"><thead><tr><th>Concern</th><th>Framework responsibility</th><th>Developer responsibility</th><th>Required evidence</th></tr></thead><tbody>
         <tr><td>Business rules</td><td>Provides entities, commands, validation hooks, transactions, audit, and test structure.</td><td>Defines invariants, state transitions, approvals, ownership, exceptional paths, and domain tests.</td><td>Scenario tests agreed with process owners.</td></tr>
         <tr><td>Authorization</td><td>Generates keys, catalogs, authenticated endpoints, handler checks, permission-aware operations, and fail-closed client gates.</td><td>Chooses public capabilities, role grants, row scopes, ownership rules, and tests ordinary users.</td><td>Catalog dump, grant tests, scoped-query tests, and denied hostile requests.</td></tr>
@@ -129,5 +130,6 @@
     <section class="page-next"><div class="tech-shell"><div><span>Start with the complete path</span><h2>Follow one business object through generation, security, and UI.</h2></div><a href="engineering.html">Open Entity → GridView</a></div></section>
   </main>
   <footer class="engineering-footer"><div class="tech-shell"><span>CodingWithEase engineering reference · Evidence grounded in framework revision d9f47f85</span><a href="index.html">Back to overview</a></div></footer>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

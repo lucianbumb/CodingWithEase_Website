@@ -12,6 +12,12 @@ foreach ($htmlFile in $htmlFiles) {
     if ($html -notmatch '<meta name="description" content="[^"]+">') {
         throw "$($htmlFile.Name) must contain a meta description."
     }
+    if ($html -notmatch 'data-nav-toggle' -or $html -notmatch 'data-site-nav') {
+        throw "$($htmlFile.Name) must include the responsive primary navigation controls."
+    }
+    if ($html -notmatch '<script src="assets/site.js" defer></script>') {
+        throw "$($htmlFile.Name) must load the shared navigation script."
+    }
 
     $ids = @([regex]::Matches($html, '\sid="([^"]+)"') | ForEach-Object { $_.Groups[1].Value })
     $duplicates = @($ids | Group-Object | Where-Object Count -gt 1 | Select-Object -ExpandProperty Name)
@@ -42,4 +48,12 @@ foreach ($htmlFile in $htmlFiles) {
     $totals.Assets += $localReferences.Count
 }
 
-Write-Host "Static site checks passed: $($totals.Pages) pages, $($totals.Ids) ids, $($totals.Anchors) internal anchors, $($totals.Assets) local references."
+$diagramFiles = @(Get-ChildItem -LiteralPath (Join-Path $root 'assets/diagrams') -Filter '*.svg' -File)
+foreach ($diagramFile in $diagramFiles) {
+    [xml]$svg = Get-Content -Raw -LiteralPath $diagramFile.FullName
+    if (-not $svg.svg.viewBox -or -not $svg.svg.title -or -not $svg.svg.desc) {
+        throw "$($diagramFile.Name) must include a viewBox, title, and description."
+    }
+}
+
+Write-Host "Static site checks passed: $($totals.Pages) pages, $($diagramFiles.Count) diagrams, $($totals.Ids) ids, $($totals.Anchors) internal anchors, $($totals.Assets) local references."

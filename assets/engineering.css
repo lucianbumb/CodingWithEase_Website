@@ -195,7 +195,8 @@ pre { margin: 0; tab-size: 2; }
 .page-next span { color: var(--docs-orange-light); font: 800 .62rem var(--mono); text-transform: uppercase; }
 .page-next h2 { max-width: 850px; margin: .7rem 0 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 1; letter-spacing: -.05em; }
 .page-next a { display: inline-flex; align-items: center; min-height: 48px; padding: .8rem 1.1rem; color: var(--docs-ink); background: white; font-weight: 800; text-decoration: none; }
-.page-next a:hover { color: white; background: var(--docs-orange); }
+.page-next a:hover,
+.page-next a:focus-visible { color: white; background: #9f3d10; }
 
 .engineering-footer { padding: 2.2rem clamp(1.5rem, 6vw, 7rem); color: #9fb1bf; background: #061421; font-size: .75rem; }
 .engineering-footer .tech-shell { display: flex; justify-content: space-between; gap: 2rem; }
@@ -326,4 +327,62 @@ pre { margin: 0; tab-size: 2; }
   .security-chain article:last-child { grid-column: auto; }
   .diagnostic-table,
   .attack-table { display: block; overflow-x: auto; }
+}
+
+.engineering-diagram {
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
+  border: 1px solid var(--docs-line);
+  background: #071724;
+  box-shadow: 0 22px 55px rgba(11,31,51,.13);
+}
+.engineering-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+.engineering-diagram a {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.engineering-diagram a::-webkit-scrollbar { display: none; }
+.engineering-diagram figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem 1rem;
+  color: #b9c8d2;
+  border-top: 1px solid #263e52;
+  background: var(--docs-code);
+  font: 700 .64rem/1.5 var(--mono);
+}
+.engineering-diagram figcaption strong { color: var(--docs-orange-light); }
+
+@media (max-width: 1000px) {
+  .engineering-tabs { display: none; }
+  html { scroll-padding-top: 76px; }
+  .js .docs-header .site-nav > a.docs-home,
+  .js .docs-header .site-nav .mobile-nav-group > a { display: flex !important; }
+}
+
+@media (max-width: 600px) {
+  .engineering-diagram {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+  .engineering-diagram img {
+    width: 900px;
+    max-width: none;
+    min-height: 0;
+    aspect-ratio: auto;
+    object-fit: initial;
+  }
+  .engineering-diagram figcaption { flex-direction: column; }
 }
