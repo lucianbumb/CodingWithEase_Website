@@ -301,7 +301,10 @@ footer p { margin: 0; }
 }
 
 .architecture-diagram {
-  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  width: 100%;
+  max-width: 1500px;
+  justify-self: center;
+  margin: clamp(2.5rem, 5vh, 4rem) auto clamp(3rem, 6vw, 5rem);
   overflow: hidden;
   border: 1px solid var(--line-light);
   background: #071724;
