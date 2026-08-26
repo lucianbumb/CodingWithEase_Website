@@ -314,6 +314,7 @@ footer p { margin: 0; }
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
+.architecture-diagram picture { display: block; }
 .architecture-diagram a::-webkit-scrollbar { display: none; }
 .architecture-diagram img { display: block; width: 100%; height: auto; }
 .architecture-diagram figcaption {
@@ -330,7 +331,8 @@ footer p { margin: 0; }
 
 @media (max-width: 600px) {
   .architecture-diagram { width: 100%; max-width: 100%; margin-inline: 0; }
-  .architecture-diagram img { width: 900px; max-width: none; }
+  .architecture-diagram a { overflow-x: hidden; }
+  .architecture-diagram img { width: 100%; max-width: 100%; }
   .architecture-diagram figcaption { flex-direction: column; }
 }
 

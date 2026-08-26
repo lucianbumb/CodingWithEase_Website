@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1280" role="img" aria-labelledby="title desc">
+  <title id="title">CodingWithEase mobile server-client architecture</title>
+  <desc id="desc">A portrait architecture diagram showing authored business truth flowing through Roslyn and cwe-gen into generated server rails, a typed operations boundary, browser UI, and verification.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ff8a4c"/></marker>
+    <style>
+      .s{font-family:Inter,Segoe UI,Arial,sans-serif}.m{font-family:Consolas,monospace}
+      .eyebrow{font-size:15px;font-weight:800;letter-spacing:1.8px}.heading{font-size:34px;font-weight:800}
+      .zone{font-size:14px;font-weight:800;letter-spacing:1.3px}.title{font-size:24px;font-weight:800}
+      .body{font-size:17px}.small{font-size:15px}
+    </style>
+  </defs>
+  <rect width="720" height="1280" fill="#071724"/>
+  <text x="44" y="52" class="s eyebrow" fill="#ffad7f">CODINGWITHEASE ARCHITECTURE</text>
+  <text x="44" y="96" class="s heading" fill="#f5f5f5">Business truth in.</text>
+  <text x="44" y="136" class="s heading" fill="#f5f5f5">Governed application out.</text>
+
+  <rect x="40" y="180" width="640" height="208" rx="10" fill="#f5f5f5"/>
+  <text x="66" y="216" class="m zone" fill="#c6531a">01 - AUTHORED BUSINESS TRUTH</text>
+  <text x="66" y="258" class="s title" fill="#0b1f33">The application team owns meaning</text>
+  <g class="m body" fill="#174a73">
+    <rect x="66" y="286" width="178" height="42" rx="4" fill="#e4ebef"/><text x="84" y="313">Business rules</text>
+    <rect x="257" y="286" width="130" height="42" rx="4" fill="#e4ebef"/><text x="278" y="313">Entities</text>
+    <rect x="400" y="286" width="128" height="42" rx="4" fill="#e4ebef"/><text x="416" y="313">Commands</text>
+    <rect x="541" y="286" width="112" height="42" rx="4" fill="#e4ebef"/><text x="559" y="313">Queries</text>
+  </g>
+  <text x="66" y="358" class="s small" fill="#425a6b">Custom DTOs and UI stay explicit and reviewable.</text>
+
+  <path d="M360 388V438" stroke="#ff8a4c" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="112" y="445" width="496" height="148" rx="74" fill="#c6531a"/>
+  <text x="360" y="483" text-anchor="middle" class="m zone" fill="#fff3ec">02 - ROSLYN SYNTAXTREE + CWE-GEN</text>
+  <text x="360" y="524" text-anchor="middle" class="s title" fill="#ffffff">Analyze - validate - generate</text>
+  <text x="360" y="556" text-anchor="middle" class="m small" fill="#ffe0d1">same input produces the same C# files</text>
+
+  <path d="M360 593V643" stroke="#ff8a4c" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="40" y="650" width="640" height="214" rx="10" fill="#0d3550" stroke="#37647f"/>
+  <text x="66" y="686" class="m zone" fill="#ffad7f">03A - SERVER - SECURITY BOUNDARY</text>
+  <text x="66" y="728" class="s title" fill="#f5f5f5">Generated execution rails</text>
+  <text x="66" y="768" class="s body" fill="#d3e0e8">Slim endpoints - command and query handlers</text>
+  <text x="66" y="800" class="s body" fill="#d3e0e8">Repositories - validation - audit - transactions</text>
+  <rect x="66" y="820" width="588" height="30" rx="4" fill="#ff8a4c"/>
+  <text x="360" y="841" text-anchor="middle" class="m zone" fill="#0b1f33">PERMISSIONS ARE ENFORCED HERE</text>
+
+  <path d="M360 864V902" stroke="#ff8a4c" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="106" y="910" width="508" height="112" rx="56" fill="#c6531a" stroke="#ffad7f" stroke-width="3"/>
+  <text x="360" y="946" text-anchor="middle" class="m zone" fill="#fff3ec">TYPED BUSINESS BOUNDARY</text>
+  <text x="360" y="982" text-anchor="middle" class="m title" fill="#ffffff">I{Entity}Operations</text>
+  <text x="360" y="1006" text-anchor="middle" class="s small" fill="#fff3ec">server implementation - typed HTTP client</text>
+
+  <path d="M360 1022V1053" stroke="#ff8a4c" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="40" y="1060" width="640" height="150" rx="10" fill="#f5f5f5"/>
+  <text x="66" y="1096" class="m zone" fill="#c6531a">03B - BROWSER CLIENT</text>
+  <text x="66" y="1137" class="s title" fill="#0b1f33">Typed application experience</text>
+  <text x="66" y="1175" class="s body" fill="#425a6b">PageModels - GridViews - forms - navigation</text>
+  <text x="66" y="1202" class="s small" fill="#425a6b">Permission-aware UX reflects the server decision.</text>
+
+  <rect x="40" y="1230" width="640" height="34" rx="4" fill="#0b263a" stroke="#294a61"/>
+  <text x="360" y="1253" text-anchor="middle" class="m small" fill="#ffad7f">PROVE: ANALYZE - TEST - REGENERATE - MEASURE - SMOKE</text>
+</svg>
