@@ -6,6 +6,7 @@ This website explains the framework's engineering model. It does not publish the
 
 ## Engineering reference
 
+- [About CodingWithEase](https://coding-with-ease.net/about.html): The story of how software engineering and factory operations shaped the framework's architecture.
 - [Entity to GridView](https://coding-with-ease.net/engineering.html): Follow an entity through cwe-gen, generated server infrastructure, typed operations, permissions, and a Blazor GridView.
 - [AI coding agents](https://coding-with-ease.net/ai-agents.html): How capability discovery, canonical output, analyzers, and verification constrain probabilistic AI suggestions.
 - [Permissions](https://coding-with-ease.net/permissions.html): How permission keys are generated, cataloged, granted, resolved, enforced on the server, and reflected in the client.

@@ -88,6 +88,7 @@ Built with CodingWithEase describes the delivery system. It is not a substitute 
 ## Canonical pages
 
 - Overview: https://coding-with-ease.net/
+- About CodingWithEase: https://coding-with-ease.net/about.html
 - Entity to GridView: https://coding-with-ease.net/engineering.html
 - AI coding agents: https://coding-with-ease.net/ai-agents.html
 - Permissions: https://coding-with-ease.net/permissions.html

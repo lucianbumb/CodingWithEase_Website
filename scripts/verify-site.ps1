@@ -20,10 +20,10 @@ foreach ($htmlFile in $htmlFiles) {
         'favicon' = '<link rel="icon" href="/assets/brand/favicon\.ico" sizes="any">'
         'Open Graph title' = '<meta property="og:title" content="[^"]+">'
         'Open Graph description' = '<meta property="og:description" content="[^"]+">'
-        'Open Graph image' = '<meta property="og:image" content="https://coding-with-ease\.net/assets/brand/coding-with-ease-social-1200x630\.png">'
+        'Open Graph image' = '<meta property="og:image" content="https://coding-with-ease\.net/assets/brand/[^"]+-1200x630\.png">'
         'Open Graph image dimensions' = '<meta property="og:image:width" content="1200">[\s\S]*<meta property="og:image:height" content="630">'
         'X/Twitter card' = '<meta name="twitter:card" content="summary_large_image">'
-        'X/Twitter image' = '<meta name="twitter:image" content="https://coding-with-ease\.net/assets/brand/coding-with-ease-social-1200x630\.png">'
+        'X/Twitter image' = '<meta name="twitter:image" content="https://coding-with-ease\.net/assets/brand/[^"]+-1200x630\.png">'
         'JSON-LD' = '<script type="application/ld\+json">'
     }
     foreach ($requirement in $requiredDiscoveryMarkup.GetEnumerator()) {
@@ -93,7 +93,8 @@ $requiredSiteFiles = @(
     'assets/brand/cwe-logo-180.png',
     'assets/brand/cwe-logo-192.png',
     'assets/brand/cwe-logo-512.png',
-    'assets/brand/coding-with-ease-social-1200x630.png'
+    'assets/brand/coding-with-ease-social-1200x630.png',
+    'assets/brand/about-coding-with-ease-1200x630.png'
 )
 foreach ($siteFile in $requiredSiteFiles) {
     $sitePath = Join-Path $root $siteFile.Replace('/', [IO.Path]::DirectorySeparatorChar)
@@ -134,10 +135,12 @@ function Get-PngDimensions([string]$Path) {
     return @{ Width = $width; Height = $height }
 }
 
-$socialCardPath = Join-Path $root 'assets/brand/coding-with-ease-social-1200x630.png'
-$socialCardDimensions = Get-PngDimensions $socialCardPath
-if ($socialCardDimensions.Width -ne 1200 -or $socialCardDimensions.Height -ne 630) {
-    throw 'The social sharing image must be exactly 1200x630 pixels.'
+foreach ($socialCardName in @('coding-with-ease-social-1200x630.png', 'about-coding-with-ease-1200x630.png')) {
+    $socialCardPath = Join-Path $root "assets/brand/$socialCardName"
+    $socialCardDimensions = Get-PngDimensions $socialCardPath
+    if ($socialCardDimensions.Width -ne 1200 -or $socialCardDimensions.Height -ne 630) {
+        throw "$socialCardName must be exactly 1200x630 pixels."
+    }
 }
 
 $diagramFiles = @(Get-ChildItem -LiteralPath (Join-Path $root 'assets/diagrams') -Filter '*.svg' -File)

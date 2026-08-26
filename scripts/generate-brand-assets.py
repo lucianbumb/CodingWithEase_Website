@@ -70,15 +70,22 @@ for favicon_path in (OUTPUT / "favicon.ico", ROOT / "favicon.ico"):
     )
 
 width, height = 1200, 630
-card = Image.new("RGB", (width, height), "#071724")
-pixels = card.load()
-for y in range(height):
-    for x in range(width):
-        blend = (x / width) * 0.65 + (y / height) * 0.35
-        r = int(7 + (18 - 7) * blend)
-        g = int(23 + (59 - 23) * blend)
-        b = int(36 + (91 - 36) * blend)
-        pixels[x, y] = (r, g, b)
+
+
+def social_background() -> Image.Image:
+    background = Image.new("RGB", (width, height), "#071724")
+    pixels = background.load()
+    for y in range(height):
+        for x in range(width):
+            blend = (x / width) * 0.65 + (y / height) * 0.35
+            r = int(7 + (18 - 7) * blend)
+            g = int(23 + (59 - 23) * blend)
+            b = int(36 + (91 - 36) * blend)
+            pixels[x, y] = (r, g, b)
+    return background
+
+
+card = social_background()
 
 draw = ImageDraw.Draw(card)
 draw.rounded_rectangle((64, 104, 420, 460), radius=26, fill="#ffffff")
@@ -105,5 +112,20 @@ draw.text((890, 548), "ELGIBE SOLUTIONS", font=label_font, fill="#ffad7f")
 
 card.save(OUTPUT / "coding-with-ease-social-1200x630.png", optimize=True)
 card.save(OUTPUT / "coding-with-ease-social-1200x630.webp", "WEBP", quality=92, method=6)
+
+about_card = social_background()
+about_draw = ImageDraw.Draw(about_card)
+about_draw.rounded_rectangle((64, 104, 420, 460), radius=26, fill="#ffffff")
+about_card.paste(large_mark, (87, 127))
+about_draw.rectangle((480, 125, 532, 131), fill="#ff8a4c")
+about_draw.text((548, 112), "THE STORY BEHIND THE FRAMEWORK", font=label_font, fill="#ffad7f")
+about_draw.text((480, 177), "CodingWithEase", font=title_font, fill="#ffffff")
+about_draw.text((480, 277), "Built from two worlds.", font=tagline_font, fill="#ffffff")
+about_draw.text((480, 354), "Software engineering + factory operations.", font=body_font, fill="#d6e2ea")
+about_draw.text((480, 411), "Why standard work belongs in software architecture.", font=body_font, fill="#d6e2ea")
+about_draw.text((64, 548), "coding-with-ease.net/about.html", font=label_font, fill="#aebfca")
+about_draw.text((880, 548), "BY LUCIAN BUMB", font=label_font, fill="#ffad7f")
+about_card.save(OUTPUT / "about-coding-with-ease-1200x630.png", optimize=True)
+about_card.save(OUTPUT / "about-coding-with-ease-1200x630.webp", "WEBP", quality=92, method=6)
 
 print(f"Generated brand assets from {SOURCE.name} in {OUTPUT}")
