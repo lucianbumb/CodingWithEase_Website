@@ -340,6 +340,92 @@ footer p { margin: 0; }
   .architecture-diagram figcaption { flex-direction: column; }
 }
 
+body.diagram-viewer-is-open { overflow: hidden; }
+
+.diagram-dialog {
+  width: min(96vw, 1600px);
+  max-width: none;
+  height: min(94svh, 1000px);
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  color: #f5f5f5;
+  border: 1px solid #38556c;
+  background: #071724;
+  box-shadow: 0 32px 90px rgba(0,0,0,.5);
+}
+.diagram-dialog::backdrop {
+  background: rgba(3,15,25,.82);
+  backdrop-filter: blur(4px);
+}
+.diagram-dialog__shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+}
+.diagram-dialog__header {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: .9rem 1rem .9rem 1.25rem;
+  border-bottom: 1px solid #38556c;
+  background: #0b1f33;
+}
+.diagram-dialog__header h2 {
+  margin: .15rem 0 0;
+  color: #f5f5f5;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.2;
+}
+.diagram-dialog__eyebrow {
+  color: #ffb27e;
+  font: 700 .62rem/1.2 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.diagram-dialog__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  min-width: 108px;
+  min-height: 48px;
+  padding: .65rem .9rem;
+  color: #0b1f33;
+  border: 2px solid #f5f5f5;
+  background: #f5f5f5;
+  cursor: pointer;
+  font: 800 .78rem/1 var(--sans);
+}
+.diagram-dialog__close span { font-size: 1.7rem; font-weight: 400; line-height: .7; }
+.diagram-dialog__close:hover { color: white; border-color: var(--signal-light); background: var(--signal); }
+.diagram-dialog__close:focus-visible { outline: 3px solid #ffb27e; outline-offset: 3px; }
+.diagram-dialog__viewport {
+  display: grid;
+  min-height: 0;
+  place-items: center;
+  overflow: auto;
+  padding: clamp(.5rem, 2vw, 1.5rem);
+}
+.diagram-dialog__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+@media (max-width: 600px) {
+  .diagram-dialog { width: calc(100vw - 1rem); height: calc(100svh - 1rem); }
+  .diagram-dialog__header { padding: .7rem; }
+  .diagram-dialog__eyebrow { display: none; }
+  .diagram-dialog__close { min-width: 96px; min-height: 44px; }
+  .diagram-dialog__viewport { padding: .5rem; }
+}
+
 /* Corporate visual system */
 :root {
   --ink: #0b1f33;

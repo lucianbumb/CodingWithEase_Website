@@ -25,6 +25,7 @@ siteNav?.querySelectorAll('a').forEach((link) => {
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
+    if (document.querySelector('[data-diagram-dialog][open]')) return;
     setNavigationOpen(false);
     navToggle?.focus();
   }
@@ -40,6 +41,70 @@ const updateHeader = () => {
 
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
+
+const diagramLinks = [...document.querySelectorAll('.architecture-diagram > a, .engineering-diagram > a')];
+
+if (diagramLinks.length && typeof HTMLDialogElement !== 'undefined') {
+  const diagramDialog = document.createElement('dialog');
+  diagramDialog.className = 'diagram-dialog';
+  diagramDialog.dataset.diagramDialog = '';
+  diagramDialog.setAttribute('aria-labelledby', 'diagram-dialog-title');
+  diagramDialog.innerHTML = `
+    <div class="diagram-dialog__shell">
+      <header class="diagram-dialog__header">
+        <div>
+          <span class="diagram-dialog__eyebrow">Architecture diagram</span>
+          <h2 id="diagram-dialog-title">Diagram</h2>
+        </div>
+        <button class="diagram-dialog__close" type="button" aria-label="Close diagram viewer">
+          <span aria-hidden="true">×</span>
+          <strong>Close</strong>
+        </button>
+      </header>
+      <div class="diagram-dialog__viewport">
+        <img class="diagram-dialog__image" alt="">
+      </div>
+    </div>`;
+  document.body.append(diagramDialog);
+
+  const diagramImage = diagramDialog.querySelector('.diagram-dialog__image');
+  const diagramTitle = diagramDialog.querySelector('#diagram-dialog-title');
+  const diagramClose = diagramDialog.querySelector('.diagram-dialog__close');
+  let diagramTrigger = null;
+
+  const closeDiagram = () => {
+    if (diagramDialog.open) diagramDialog.close();
+  };
+
+  diagramLinks.forEach((link) => {
+    link.setAttribute('aria-haspopup', 'dialog');
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const sourceImage = link.querySelector('img');
+      const figure = link.closest('figure');
+      const caption = figure?.querySelector('figcaption strong');
+
+      diagramTrigger = link;
+      diagramImage.src = sourceImage?.currentSrc || sourceImage?.src || link.href;
+      diagramImage.alt = sourceImage?.alt || '';
+      diagramTitle.textContent = caption?.textContent?.trim() || 'Architecture diagram';
+      document.body.classList.add('diagram-viewer-is-open');
+      diagramDialog.showModal();
+      diagramClose.focus();
+    });
+  });
+
+  diagramClose.addEventListener('click', closeDiagram);
+  diagramDialog.addEventListener('click', (event) => {
+    if (event.target === diagramDialog) closeDiagram();
+  });
+  diagramDialog.addEventListener('close', () => {
+    document.body.classList.remove('diagram-viewer-is-open');
+    diagramImage.removeAttribute('src');
+    diagramTrigger?.focus();
+    diagramTrigger = null;
+  });
+}
 
 audienceTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
