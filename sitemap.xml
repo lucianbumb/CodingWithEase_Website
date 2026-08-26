@@ -2,10 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://coding-with-ease.net/</loc>
+    <lastmod>2026-08-26</lastmod>
   </url>
-  <url><loc>https://coding-with-ease.net/engineering.html</loc></url>
-  <url><loc>https://coding-with-ease.net/ai-agents.html</loc></url>
-  <url><loc>https://coding-with-ease.net/permissions.html</loc></url>
-  <url><loc>https://coding-with-ease.net/localization.html</loc></url>
-  <url><loc>https://coding-with-ease.net/evidence.html</loc></url>
+  <url><loc>https://coding-with-ease.net/engineering.html</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://coding-with-ease.net/ai-agents.html</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://coding-with-ease.net/permissions.html</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://coding-with-ease.net/localization.html</loc><lastmod>2026-08-26</lastmod></url>
+  <url><loc>https://coding-with-ease.net/evidence.html</loc><lastmod>2026-08-26</lastmod></url>
 </urlset>

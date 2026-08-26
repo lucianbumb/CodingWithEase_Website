@@ -1,0 +1,97 @@
+# CodingWithEase: AI-readable engineering reference
+
+## Purpose
+
+CodingWithEase exists to help engineering teams deliver operational .NET and Blazor applications quickly without repeatedly inventing infrastructure. It is the result of years of application delivery, generator experiments, compiler study, BlazorForKids source-generator work, Blazor SSR trials, and continued refinement of the cwe-gen workflow.
+
+The framework is designed for technical evaluators, factory managers, software teams, and AI coding agents. The important claim is not that generated applications are automatically correct. The claim is that repeated mechanics are generated through one inspectable system, security checkpoints remain server-owned, architectural mistakes surface early, and application teams can produce executable evidence.
+
+## Authored application surface
+
+Application engineers and approved coding agents work primarily with:
+
+- Entities and their validation or display metadata.
+- Domain methods and business invariants.
+- Commands representing explicit state-changing behavior.
+- Queries representing explicit read behavior and projections.
+- Custom DTOs used at application boundaries.
+- Custom UI composition for real operational workflows.
+- Role grants, row scopes, ownership policy, and application tests.
+
+Business rules are not invented by the framework. Query correctness and performance are not guaranteed by attributes. Engineers must validate domain behavior with process owners and measure queries against production-shaped data.
+
+## Deterministic generation
+
+cwe-gen uses Roslyn SyntaxTree analysis to identify declared types, members, methods, attributes, and application intent. It writes readable C# files to generated framework areas. Stable ordering, content comparison, orphan cleanup, and second-run convergence checks make output reproducible.
+
+Generated output can include:
+
+- Strong identifiers and browser-safe DTOs.
+- Entity-specific I{Entity}Operations contracts.
+- Server and browser implementations of those contracts.
+- Slim authenticated endpoints.
+- Command and query handlers.
+- Repositories and provider-neutral data access.
+- Permission constants and catalog entries.
+- Validation, audit, error, document, and event infrastructure.
+- PageModels, connected UI support, and AI tool descriptors.
+
+Generated files are inspectable, diffable, debuggable, and generator-owned. If output is wrong, the source declaration or generator is corrected; application agents do not patch generated infrastructure.
+
+## Server-client boundary
+
+UI components depend on I{Entity}Operations rather than repositories, controllers, or raw transport. During server rendering, the contract resolves to a server implementation. In the browser, it resolves to a typed HTTP implementation. The component remains focused on business interaction while transport and infrastructure stay behind the contract.
+
+The browser is never authoritative for identity, permissions, audit values, or protected state changes.
+
+## Permissions
+
+A generated permission follows a complete chain:
+
+1. A stable key is generated from the declared capability.
+2. The key is published in the grantable permission catalog.
+3. Roles, job titles, and user overrides compose an effective permission set.
+4. The server resolves the authenticated caller and enforces the key inside the handler before business work.
+5. The client reflects the same decision to provide accurate navigation and actions.
+
+Changing HTML, JavaScript, local storage, or a request payload cannot grant authority. The request still reaches the server-owned handler check. Row-level scope and ownership policy remain separate application decisions and must also be tested.
+
+## AI-assisted development
+
+CodingWithEase does not treat a language model as a source of framework truth. Agents discover version-specific capabilities from the built application and installed assemblies. The expected workflow includes cwe guide, a successful build, dotnet-ai capability initialization, explicit capability execution, cwe-gen, analyzers, CheckComposition, tests, and release verification.
+
+The AI proposes business-facing application code within documented boundaries. Deterministic generators create repeated infrastructure. Analyzers reject known invalid shapes. Human engineers remain responsible for intent, review, security policy, performance, and acceptance.
+
+This is how the framework reduces AI slop: probabilistic suggestions must enter a delivery system with canonical output, protected infrastructure, server-side enforcement, and repeatable proof.
+
+## Localization
+
+Framework text, generated entity metadata, and application-authored text contribute stable localization keys. Adding a culture creates the language configuration and synchronizes missing target entries from the English source catalog. Translation can be performed manually or through permission-gated, resumable AI batches, followed by human review.
+
+Runtime resolution uses the requested culture, then the English source, then the stable key. Missing translations should remain visible rather than silently producing blank UI.
+
+## Evidence and responsibility
+
+Framework-level safeguards include deterministic regeneration, architecture tests, Roslyn diagnostics, composition analysis, permission catalogs, server handler checks, save-pipeline controls, caching rules, paging support, query diagnostics, package-consumer tests, and release smoke tests.
+
+Application teams still prove:
+
+- Correct invariants, transitions, approvals, and exceptional paths.
+- Appropriate grants, row scope, ownership, and ordinary-persona denial.
+- Query results, ordering, paging, plans, indexes, payload size, and latency.
+- Cache dependencies and freshness.
+- Custom integrations, secrets, dependencies, configuration, monitoring, and deployment.
+- Acceptance against realistic operational scenarios and production-shaped data.
+
+Built with CodingWithEase describes the delivery system. It is not a substitute for an application-specific acceptance record.
+
+## Canonical pages
+
+- Overview: https://coding-with-ease.net/
+- Entity to GridView: https://coding-with-ease.net/engineering.html
+- AI coding agents: https://coding-with-ease.net/ai-agents.html
+- Permissions: https://coding-with-ease.net/permissions.html
+- Localization: https://coding-with-ease.net/localization.html
+- Evidence and responsibilities: https://coding-with-ease.net/evidence.html
+- Elgibe Solutions: https://elgibesolutions.net/en
+- Contact: https://elgibesolutions.net/en/contact

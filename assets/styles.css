@@ -50,6 +50,7 @@ a { color: inherit; }
 }
 .site-header.is-scrolled { height: 68px; box-shadow: 0 10px 28px rgba(11,31,51,.08); }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; font-weight: 750; letter-spacing: -.02em; }
+.brand-logo { display: block; width: 32px; height: 32px; object-fit: contain; background: #fff; border: 1px solid rgba(11, 31, 51, .14); border-radius: 4px; }
 .brand-mark { display: grid; place-items: center; width: 31px; height: 31px; color: white; background: var(--signal); font-weight: 900; }
 .brand-name { font-size: 1.02rem; }
 .site-nav { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); font-size: .82rem; font-weight: 650; }

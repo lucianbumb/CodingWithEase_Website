@@ -1,0 +1,11 @@
+/* TEAM */
+Engineer and framework author: Lucian Bumb
+Company: Elgibe Solutions
+Contact: https://elgibesolutions.net/en/contact
+Location: Romania
+
+/* SITE */
+Name: CodingWithEase
+Language: English
+Standards: HTML5, CSS, JavaScript, SVG, JSON-LD
+Last update: 2026-08-26

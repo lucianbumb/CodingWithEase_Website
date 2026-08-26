@@ -1,0 +1,32 @@
+# CodingWithEase
+
+> CodingWithEase is an opinionated .NET and Blazor engineering framework for secure, consistent operational business applications. It combines explicit application architecture, deterministic Roslyn-based code generation, server-enforced permissions, analyzers, and capability-guided AI development.
+
+This website explains the framework's engineering model. It does not publish the complete framework implementation or claim that a framework can replace application-specific engineering judgment.
+
+## Engineering reference
+
+- [Entity to GridView](https://coding-with-ease.net/engineering.html): Follow an entity through cwe-gen, generated server infrastructure, typed operations, permissions, and a Blazor GridView.
+- [AI coding agents](https://coding-with-ease.net/ai-agents.html): How capability discovery, canonical output, analyzers, and verification constrain probabilistic AI suggestions.
+- [Permissions](https://coding-with-ease.net/permissions.html): How permission keys are generated, cataloged, granted, resolved, enforced on the server, and reflected in the client.
+- [Localization](https://coding-with-ease.net/localization.html): How translation keys are discovered, cultures are added, missing entries are seeded, and AI-assisted translations are reviewed.
+- [Evidence and responsibilities](https://coding-with-ease.net/evidence.html): Framework safeguards, measured failure cases, and the boundary between platform automation and developer accountability.
+
+## Core architecture
+
+- Developers author entities, commands, queries, custom DTOs, business rules, and application-specific UI.
+- cwe-gen uses Roslyn SyntaxTree analysis to generate readable, diffable, deterministic C#.
+- I{Entity}Operations is the typed business boundary shared by server-side and browser implementations.
+- The server independently authenticates the caller, resolves permissions and row scope, and enforces protected work inside handlers.
+- The client uses the same permissions for accurate navigation and actions, but client state is never the security boundary.
+- Framework-owned and generated infrastructure is not edited by AI coding agents in application projects.
+
+## Important responsibility boundary
+
+CodingWithEase standardizes infrastructure and prevents known unsafe shapes. Developers remain responsible for correct business rules, access policy, custom code, query correctness, query plans, indexes, payload size, production-scale performance, configuration, dependencies, and application-specific testing.
+
+## Organization and contact
+
+- [Elgibe Solutions](https://elgibesolutions.net/en)
+- [Contact Elgibe Solutions](https://elgibesolutions.net/en/contact)
+- [Full AI-readable reference](https://coding-with-ease.net/llms-full.txt)

@@ -1,0 +1,5 @@
+Contact: https://elgibesolutions.net/en/contact
+Expires: 2027-08-26T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://coding-with-ease.net/.well-known/security.txt
+Policy: https://coding-with-ease.net/evidence.html
